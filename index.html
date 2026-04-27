@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ほうりつ相談室 / LawBuddy</title>
+<link href="https://fonts.googleapis.com/css2?family=Yomogi&family=Zen+Maru+Gothic:wght@400;500;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #FFB800;
+    --orange: #FF6B35;
+    --peach: #FFE5D0;
+    --cream: #FFFBF5;
+    --white: #FFFFFF;
+    --ink: #2D2013;
+    --ink-light: #6B4F2A;
+    --bubble-user: #FF6B35;
+    --bubble-ai: #FFFFFF;
+    --shadow: rgba(255,107,53,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(255,184,0,0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(255,107,53,0.10) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(255,229,208,0.3) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  header {
+    padding: 24px 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-icon {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--sun), var(--orange));
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 12px var(--shadow);
+    transform: rotate(-3deg);
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .logo-ja {
+    font-family: 'Yomogi', cursive;
+    font-size: 18px;
+    color: var(--orange);
+    letter-spacing: 0.05em;
+  }
+
+  .logo-en {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-light);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .lang-toggle {
+    display: flex;
+    background: var(--white);
+    border-radius: 20px;
+    padding: 3px;
+    box-shadow: 0 2px 8px var(--shadow);
+    gap: 2px;
+  }
+
+  .lang-btn {
+    padding: 5px 14px;
+    border-radius: 16px;
+    border: none;
+    background: transparent;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--ink-light);
+    transition: all 0.2s;
+  }
+
+  .lang-btn.active {
+    background: linear-gradient(135deg, var(--sun), var(--orange));
+    color: white;
+    box-shadow: 0 2px 6px rgba(255,107,53,0.3);
+  }
+
+  /* Hero section */
+  .hero {
+    text-align: center;
+    padding: 20px 0 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-emoji {
+    font-size: 52px;
+    display: block;
+    margin-bottom: 12px;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .hero h1 {
+    font-family: 'Yomogi', cursive;
+    font-size: 26px;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 span {
+    color: var(--orange);
+  }
+
+  .hero p {
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.7;
+  }
+
+  /* Example chips */
+  .examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 16px 0 20px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .chip {
+    background: var(--white);
+    border: 1.5px solid rgba(255,107,53,0.2);
+    border-radius: 20px;
+    padding: 7px 14px;
+    font-size: 12px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px var(--shadow);
+    white-space: nowrap;
+  }
+
+  .chip:hover {
+    background: var(--peach);
+    border-color: var(--orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+  }
+
+  /* Chat area */
+  .chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 8px 0;
+    min-height: 200px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .message {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    animation: fadeUp 0.3s ease both;
+  }
+
+  .message.user {
+    flex-direction: row-reverse;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .avatar.ai {
+    background: linear-gradient(135deg, var(--sun), var(--orange));
+    box-shadow: 0 3px 10px var(--shadow);
+  }
+
+  .avatar.user {
+    background: var(--ink);
+  }
+
+  .bubble {
+    max-width: 75%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.7;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+
+  .message.ai .bubble {
+    background: var(--white);
+    border-radius: 4px 18px 18px 18px;
+    color: var(--ink);
+  }
+
+  .message.user .bubble {
+    background: linear-gradient(135deg, var(--orange), #FF4500);
+    border-radius: 18px 4px 18px 18px;
+    color: white;
+  }
+
+  .law-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(255,184,0,0.15), rgba(255,107,53,0.15));
+    border: 1px solid rgba(255,107,53,0.3);
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+
+  /* Typing indicator */
+  .typing {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 14px 16px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    background: var(--orange);
+    border-radius: 50%;
+    animation: typing 1.2s ease-in-out infinite;
+  }
+
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-6px); opacity: 1; }
+  }
+
+  /* Input area */
+  .input-area {
+    position: sticky;
+    bottom: 0;
+    padding: 16px 0 24px;
+    background: linear-gradient(transparent, var(--cream) 30%);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .input-box {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    background: var(--white);
+    border-radius: 24px;
+    padding: 10px 10px 10px 18px;
+    box-shadow: 0 4px 20px var(--shadow), 0 0 0 2px rgba(255,107,53,0.1);
+    transition: box-shadow 0.2s;
+  }
+
+  .input-box:focus-within {
+    box-shadow: 0 4px 24px rgba(255,107,53,0.2), 0 0 0 2px rgba(255,107,53,0.3);
+  }
+
+  textarea {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    background: transparent;
+    resize: none;
+    max-height: 120px;
+    line-height: 1.6;
+  }
+
+  textarea::placeholder {
+    color: rgba(107,79,42,0.4);
+  }
+
+  .send-btn {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, var(--sun), var(--orange));
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    box-shadow: 0 3px 10px rgba(255,107,53,0.3);
+  }
+
+  .send-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 14px rgba(255,107,53,0.4);
+  }
+
+  .send-btn:active { transform: scale(0.97); }
+
+  .send-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: white;
+  }
+
+  .disclaimer {
+    text-align: center;
+    font-size: 10px;
+    color: var(--ink-light);
+    opacity: 0.6;
+    margin-top: 10px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,107,53,0.3); border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">⚖️</div>
+      <div class="logo-text">
+        <span class="logo-ja" id="logo-ja">ほうりつ相談室</span>
+        <span class="logo-en">LAW BUDDY</span>
+      </div>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('ja')">JP</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </header>
+
+  <div class="hero">
+    <span class="hero-emoji">🌟</span>
+    <h1 id="hero-title">なんでも<span>気軽に</span>聞いてみて！</h1>
+    <p id="hero-sub">法律のことって難しそう…でも大丈夫。<br>あなたの言葉で話しかけてね。</p>
+  </div>
+
+  <div class="examples" id="examples">
+    <div class="chip" onclick="useExample(this)">残業代が払われない 😤</div>
+    <div class="chip" onclick="useExample(this)">隣の木が敷地に入ってきた 🌳</div>
+    <div class="chip" onclick="useExample(this)">敷金が返ってこない 🏠</div>
+    <div class="chip" onclick="useExample(this)">ネット上で悪口を書かれた 😢</div>
+    <div class="chip" onclick="useExample(this)">解雇されそう 💼</div>
+  </div>
+
+  <div class="chat-area" id="chat"></div>
+
+  <div class="input-area">
+    <div class="input-box">
+      <textarea id="input" rows="1" placeholder="困ってることを話しかけてね..." 
+        onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="send-btn" onclick="sendMessage()">
+        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+      </button>
+    </div>
+    <p class="disclaimer" id="disclaimer">⚠️ このサービスは法的アドバイスではありません。参考情報としてご活用ください。</p>
+  </div>
+
+</div>
+
+<script>
+let currentLang = 'ja';
+
+const texts = {
+  ja: {
+    logoText: 'ほうりつ相談室',
+    heroTitle: 'なんでも<span>気軽に</span>聞いてみて！',
+    heroSub: '法律のことって難しそう…でも大丈夫。<br>あなたの言葉で話しかけてね。',
+    placeholder: '困ってることを話しかけてね...',
+    disclaimer: '⚠️ このサービスは法的アドバイスではありません。参考情報としてご活用ください。',
+    chips: ['残業代が払われない 😤','隣の木が敷地に入ってきた 🌳','敷金が返ってこない 🏠','ネット上で悪口を書かれた 😢','解雇されそう 💼'],
+    system: `あなたは日本の法律をわかりやすく説明するアシスタントです。
+ユーザーが日常の困りごとを話しかけてきたら、関係する日本の法律をわかりやすく、親しみやすい言葉で説明してください。
+回答フォーマット：
+1. まず共感の一言
+2. 関連する法律の名前（例：民法233条）
+3. その法律が何を言っているか、中学生でもわかるように説明
+4. ユーザーが取れる具体的なアクション
+5. 必要であれば「弁護士や専門家に相談することをおすすめします」と一言添える
+絵文字を適度に使い、堅くならずフレンドリーに答えてください。法律用語は必ず日常語に言い換えてください。`
+  },
+  en: {
+    logoText: 'Law Buddy',
+    heroTitle: 'Ask me <span>anything</span>!',
+    heroSub: "Law sounds scary... but don't worry!<br>Just talk to me like a friend.",
+    placeholder: 'Tell me what\'s bothering you...',
+    disclaimer: '⚠️ This is not legal advice. For reference only.',
+    chips: ['My boss won\'t pay overtime 😤','Neighbor\'s tree in my yard 🌳','Landlord kept my deposit 🏠','Being harassed online 😢','Facing unfair dismissal 💼'],
+    system: `You are a friendly assistant that explains Japanese law in simple, easy-to-understand English.
+When a user describes an everyday problem, explain the relevant Japanese laws in plain language anyone can understand.
+Format:
+1. Start with empathy
+2. Name the relevant law (e.g., Civil Code Article 233)
+3. Explain what it means in simple terms
+4. List concrete actions the user can take
+5. If needed, suggest consulting a lawyer or professional
+Use emojis naturally. Keep it friendly and never use legal jargon without explaining it.`
+  }
+};
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  const t = texts[lang];
+  document.getElementById('logo-ja').textContent = t.logoText;
+  document.getElementById('hero-title').innerHTML = t.heroTitle;
+  document.getElementById('hero-sub').innerHTML = t.heroSub;
+  document.getElementById('input').placeholder = t.placeholder;
+  document.getElementById('disclaimer').textContent = t.disclaimer;
+  const chips = document.getElementById('examples').querySelectorAll('.chip');
+  chips.forEach((c, i) => c.textContent = t.chips[i]);
+}
+
+function useExample(el) {
+  document.getElementById('input').value = el.textContent.replace(/[\u{1F300}-\u{1FFFF}]/gu, '').trim();
+  autoResize(document.getElementById('input'));
+  sendMessage();
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+}
+
+function addMessage(role, content) {
+  const chat = document.getElementById('chat');
+  const div = document.createElement('div');
+  div.className = `message ${role}`;
+
+  const avatar = document.createElement('div');
+  avatar.className = `avatar ${role}`;
+  avatar.textContent = role === 'ai' ? '⚖️' : '👤';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+
+  if (role === 'ai') {
+    bubble.innerHTML = content;
+  } else {
+    bubble.textContent = content;
+  }
+
+  div.appendChild(avatar);
+  div.appendChild(bubble);
+  chat.appendChild(div);
+  div.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  return bubble;
+}
+
+function showTyping() {
+  const chat = document.getElementById('chat');
+  const div = document.createElement('div');
+  div.className = 'message ai';
+  div.id = 'typing-indicator';
+
+  const avatar = document.createElement('div');
+  avatar.className = 'avatar ai';
+  avatar.textContent = '⚖️';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble typing';
+  bubble.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+
+  div.appendChild(avatar);
+  div.appendChild(bubble);
+  chat.appendChild(div);
+  div.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing-indicator');
+  if (t) t.remove();
+}
+
+async function sendMessage() {
+  const input = document.getElementById('input');
+  const text = input.value.trim();
+  if (!text) return;
+
+  // Hide hero on first message
+  document.querySelector('.hero').style.display = 'none';
+  document.getElementById('examples').style.display = 'none';
+
+  addMessage('user', text);
+  input.value = '';
+  input.style.height = 'auto';
+
+  showTyping();
+
+  try {
+    const t = texts[currentLang];
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: t.system,
+        messages: [{ role: 'user', content: text }]
+      })
+    });
+
+    const data = await response.json();
+    removeTyping();
+
+    const reply = data.content?.[0]?.text || '申し訳ありません、エラーが発生しました。';
+    const formatted = reply
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/【(.*?)】/g, '<div class="law-tag">📜 $1</div>')
+      .replace(/\n/g, '<br>');
+
+    addMessage('ai', formatted);
+  } catch (e) {
+    removeTyping();
+    addMessage('ai', currentLang === 'ja'
+      ? 'ごめんなさい、エラーが発生しました。もう一度試してみてください。'
+      : 'Sorry, something went wrong. Please try again.');
+  }
+}
+</script>
+</body>
+</html>
