@@ -57,21 +57,13 @@
     justify-content: space-between;
   }
 
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-  }
+  .logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
 
   .logo-icon {
-    width: 44px;
-    height: 44px;
+    width: 44px; height: 44px;
     background: linear-gradient(135deg, var(--sun), var(--orange));
     border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     font-size: 22px;
     box-shadow: 0 4px 12px var(--shadow);
     transform: rotate(-3deg);
@@ -79,174 +71,59 @@
   }
 
   .logo:hover .logo-icon { transform: rotate(0deg); }
-
   .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
 
-  .logo-ja {
-    font-family: 'Yomogi', cursive;
-    font-size: 18px;
-    color: var(--orange);
-    letter-spacing: 0.05em;
-  }
-
-  .logo-en {
-    font-family: 'Outfit', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--ink-light);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
+  .logo-ja { font-family: 'Yomogi', cursive; font-size: 18px; color: var(--orange); letter-spacing: 0.05em; }
+  .logo-en { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 600; color: var(--ink-light); letter-spacing: 0.12em; text-transform: uppercase; }
 
   .header-right { display: flex; align-items: center; gap: 10px; }
 
   .back-btn {
-    display: none;
-    align-items: center;
-    gap: 6px;
+    display: none; align-items: center; gap: 6px;
     padding: 6px 14px;
     background: var(--white);
     border: 1.5px solid rgba(255,107,53,0.3);
     border-radius: 20px;
     font-family: 'Zen Maru Gothic', sans-serif;
-    font-size: 12px;
-    color: var(--orange);
-    cursor: pointer;
+    font-size: 12px; color: var(--orange); cursor: pointer;
     box-shadow: 0 2px 8px var(--shadow);
     transition: all 0.2s;
   }
-
   .back-btn:hover { background: var(--peach); border-color: var(--orange); transform: translateY(-1px); }
   .back-btn.visible { display: flex; }
 
-  .lang-toggle {
-    display: flex;
-    background: var(--white);
-    border-radius: 20px;
-    padding: 3px;
-    box-shadow: 0 2px 8px var(--shadow);
-    gap: 2px;
-  }
+  .lang-toggle { display: flex; background: var(--white); border-radius: 20px; padding: 3px; box-shadow: 0 2px 8px var(--shadow); gap: 2px; }
+  .lang-btn { padding: 5px 14px; border-radius: 16px; border: none; background: transparent; font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; color: var(--ink-light); transition: all 0.2s; }
+  .lang-btn.active { background: linear-gradient(135deg, var(--sun), var(--orange)); color: white; box-shadow: 0 2px 6px rgba(255,107,53,0.3); }
 
-  .lang-btn {
-    padding: 5px 14px;
-    border-radius: 16px;
-    border: none;
-    background: transparent;
-    font-family: 'Outfit', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    color: var(--ink-light);
-    transition: all 0.2s;
-  }
+  .hero { text-align: center; padding: 20px 0 24px; animation: fadeUp 0.6s ease both; }
+  .hero-emoji { font-size: 52px; display: block; margin-bottom: 12px; animation: bounce 2s ease-in-out infinite; }
 
-  .lang-btn.active {
-    background: linear-gradient(135deg, var(--sun), var(--orange));
-    color: white;
-    box-shadow: 0 2px 6px rgba(255,107,53,0.3);
-  }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
-  .hero {
-    text-align: center;
-    padding: 20px 0 24px;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .hero-emoji {
-    font-size: 52px;
-    display: block;
-    margin-bottom: 12px;
-    animation: bounce 2s ease-in-out infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-
-  .hero h1 {
-    font-family: 'Yomogi', cursive;
-    font-size: 26px;
-    color: var(--ink);
-    line-height: 1.4;
-    margin-bottom: 8px;
-  }
-
+  .hero h1 { font-family: 'Yomogi', cursive; font-size: 26px; color: var(--ink); line-height: 1.4; margin-bottom: 8px; }
   .hero h1 span { color: var(--orange); }
   .hero p { font-size: 13px; color: var(--ink-light); line-height: 1.7; }
 
-  .examples {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-    margin: 16px 0 20px;
-    animation: fadeUp 0.6s 0.1s ease both;
-  }
+  .examples { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 16px 0 20px; animation: fadeUp 0.6s 0.1s ease both; }
 
   .chip {
-    background: var(--white);
-    border: 1.5px solid rgba(255,107,53,0.2);
-    border-radius: 20px;
-    padding: 7px 14px;
-    font-size: 12px;
-    color: var(--ink);
-    cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 2px 6px var(--shadow);
-    white-space: nowrap;
+    background: var(--white); border: 1.5px solid rgba(255,107,53,0.2); border-radius: 20px;
+    padding: 7px 14px; font-size: 12px; color: var(--ink); cursor: pointer;
+    transition: all 0.2s; box-shadow: 0 2px 6px var(--shadow); white-space: nowrap;
   }
+  .chip:hover { background: var(--peach); border-color: var(--orange); transform: translateY(-2px); box-shadow: 0 4px 12px var(--shadow); }
 
-  .chip:hover {
-    background: var(--peach);
-    border-color: var(--orange);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px var(--shadow);
-  }
+  .chat-area { flex: 1; display: flex; flex-direction: column; gap: 16px; padding: 8px 0; min-height: 200px; animation: fadeUp 0.6s 0.2s ease both; }
 
-  .chat-area {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 8px 0;
-    min-height: 200px;
-    animation: fadeUp 0.6s 0.2s ease both;
-  }
-
-  .message {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    animation: fadeUp 0.3s ease both;
-  }
-
+  .message { display: flex; gap: 10px; align-items: flex-start; animation: fadeUp 0.3s ease both; }
   .message.user { flex-direction: row-reverse; }
 
-  .avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-
+  .avatar { width: 36px; height: 36px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
   .avatar.ai { background: linear-gradient(135deg, var(--sun), var(--orange)); box-shadow: 0 3px 10px var(--shadow); }
   .avatar.user { background: var(--ink); }
 
-  .bubble {
-    max-width: 75%;
-    padding: 12px 16px;
-    border-radius: 18px;
-    font-size: 14px;
-    line-height: 1.7;
-    box-shadow: 0 2px 8px var(--shadow);
-  }
-
+  .bubble { max-width: 75%; padding: 12px 16px; border-radius: 18px; font-size: 14px; line-height: 1.7; box-shadow: 0 2px 8px var(--shadow); }
   .message.ai .bubble { background: var(--white); border-radius: 4px 18px 18px 18px; color: var(--ink); }
   .message.user .bubble { background: linear-gradient(135deg, var(--orange), #FF4500); border-radius: 18px 4px 18px 18px; color: white; }
 
@@ -257,121 +134,75 @@
     display: inline-block;
     background: linear-gradient(135deg, rgba(255,184,0,0.15), rgba(255,107,53,0.15));
     border: 1px solid rgba(255,107,53,0.3);
-    border-radius: 6px;
-    padding: 2px 8px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--orange);
-    margin-bottom: 8px;
+    border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; color: var(--orange); margin-bottom: 8px;
   }
 
-  /* 会話の区切り線 */
-  .turn-divider {
+  /* 次のアクションボタン */
+  .next-actions {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     gap: 8px;
-    margin: 4px 0;
+    margin-top: 12px;
+    padding-left: 46px;
+    animation: fadeUp 0.4s ease both;
   }
 
-  .turn-divider span {
-    font-size: 10px;
-    color: var(--ink-light);
-    opacity: 0.4;
-    white-space: nowrap;
+  .action-btn {
+    background: var(--white);
+    border: 1.5px solid rgba(255,107,53,0.3);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px var(--shadow);
   }
 
-  .turn-divider::before,
-  .turn-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: rgba(107,79,42,0.1);
+  .action-btn:hover {
+    background: var(--peach);
+    border-color: var(--orange);
+    color: var(--orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
   }
 
-  .typing {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 14px 16px;
-  }
+  .action-btn:active { transform: scale(0.97); }
 
-  .dot {
-    width: 7px;
-    height: 7px;
-    background: var(--orange);
-    border-radius: 50%;
-    animation: typing 1.2s ease-in-out infinite;
-  }
+  /* 区切り線 */
+  .turn-divider { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+  .turn-divider span { font-size: 10px; color: var(--ink-light); opacity: 0.4; white-space: nowrap; }
+  .turn-divider::before, .turn-divider::after { content: ''; flex: 1; height: 1px; background: rgba(107,79,42,0.1); }
 
+  .typing { display: flex; align-items: center; gap: 4px; padding: 14px 16px; }
+  .dot { width: 7px; height: 7px; background: var(--orange); border-radius: 50%; animation: typing 1.2s ease-in-out infinite; }
   .dot:nth-child(2) { animation-delay: 0.2s; }
   .dot:nth-child(3) { animation-delay: 0.4s; }
 
-  @keyframes typing {
-    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-    30% { transform: translateY(-6px); opacity: 1; }
-  }
+  @keyframes typing { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-6px); opacity: 1; } }
 
-  .input-area {
-    position: sticky;
-    bottom: 0;
-    padding: 16px 0 24px;
-    background: linear-gradient(transparent, var(--cream) 30%);
-    animation: fadeUp 0.6s 0.3s ease both;
-  }
+  .input-area { position: sticky; bottom: 0; padding: 16px 0 24px; background: linear-gradient(transparent, var(--cream) 30%); animation: fadeUp 0.6s 0.3s ease both; }
 
   .input-box {
-    display: flex;
-    align-items: flex-end;
-    gap: 10px;
-    background: var(--white);
-    border-radius: 24px;
-    padding: 10px 10px 10px 18px;
+    display: flex; align-items: flex-end; gap: 10px;
+    background: var(--white); border-radius: 24px; padding: 10px 10px 10px 18px;
     box-shadow: 0 4px 20px var(--shadow), 0 0 0 2px rgba(255,107,53,0.1);
     transition: box-shadow 0.2s;
   }
-
   .input-box:focus-within { box-shadow: 0 4px 24px rgba(255,107,53,0.2), 0 0 0 2px rgba(255,107,53,0.3); }
 
-  textarea {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-family: 'Zen Maru Gothic', sans-serif;
-    font-size: 14px;
-    color: var(--ink);
-    background: transparent;
-    resize: none;
-    max-height: 120px;
-    line-height: 1.6;
-  }
-
+  textarea { flex: 1; border: none; outline: none; font-family: 'Zen Maru Gothic', sans-serif; font-size: 14px; color: var(--ink); background: transparent; resize: none; max-height: 120px; line-height: 1.6; }
   textarea::placeholder { color: rgba(107,79,42,0.4); }
 
-  .send-btn {
-    width: 42px;
-    height: 42px;
-    background: linear-gradient(135deg, var(--sun), var(--orange));
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.2s;
-    box-shadow: 0 3px 10px rgba(255,107,53,0.3);
-  }
-
+  .send-btn { width: 42px; height: 42px; background: linear-gradient(135deg, var(--sun), var(--orange)); border: none; border-radius: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; box-shadow: 0 3px 10px rgba(255,107,53,0.3); }
   .send-btn:hover { transform: scale(1.05); box-shadow: 0 5px 14px rgba(255,107,53,0.4); }
   .send-btn:active { transform: scale(0.97); }
   .send-btn svg { width: 18px; height: 18px; fill: white; }
 
   .disclaimer { text-align: center; font-size: 10px; color: var(--ink-light); opacity: 0.6; margin-top: 10px; }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -418,7 +249,7 @@
 
   <div class="input-area">
     <div class="input-box">
-      <textarea id="input" rows="1" placeholder="困ってることを話しかけてね..." 
+      <textarea id="input" rows="1" placeholder="困ってることを話しかけてね..."
         onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
       <button class="send-btn" onclick="sendMessage()">
         <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
@@ -444,18 +275,22 @@ const texts = {
     placeholderCont: 'さらに詳しく聞いてみて...',
     disclaimer: '⚠️ このサービスは法的アドバイスではありません。参考情報としてご活用ください。',
     backLabel: 'トップに戻る',
-    chips: ['残業代が払われない 😤','隣の木が敷地に入ってきた 🌳','敷金が返ってこない 🏠','ネット上で悪口を書かれた 😢','解雇されそう 💼'],
     turnLabel: (n) => `${n}回目の相談`,
+    chips: ['残業代が払われない 😤','隣の木が敷地に入ってきた 🌳','敷金が返ってこない 🏠','ネット上で悪口を書かれた 😢','解雇されそう 💼'],
     system: `あなたは日本の法律をわかりやすく説明するアシスタントです。
 ユーザーが日常の困りごとを話しかけてきたら、関係する日本の法律をわかりやすく、親しみやすい言葉で説明してください。
-会話の文脈を必ず踏まえて回答してください。前の質問や回答を参照しながら、続きの会話として自然に答えてください。
-回答フォーマット：
-1. まず共感の一言（2回目以降は前の会話を踏まえて自然につなげる）
-2. 関連する法律の名前（例：民法233条）
-3. その法律が何を言っているか、中学生でもわかるように説明
-4. ユーザーが取れる具体的なアクション
-5. 必要であれば「弁護士や専門家に相談することをおすすめします」と一言添える
-絵文字を適度に使い、堅くならずフレンドリーに答えてください。法律用語は必ず日常語に言い換えてください。`
+会話の文脈を必ず踏まえて回答してください。
+
+必ず以下のJSON形式で返答してください（マークダウンのコードブロックは不要）：
+{
+  "reply": "ここに回答を書く（マークダウン使用可）",
+  "actions": ["次の選択肢1", "次の選択肢2", "次の選択肢3"]
+}
+
+actionsには、ユーザーが次に取りたいと思う行動を3つ、短く具体的に書いてください。
+例：「請求書の作り方を教えて」「相談窓口はどこ？」「もっと詳しく知りたい」「別の問題を相談する」
+
+回答は共感→法律説明→具体的アクションの順で。絵文字を適度に使いフレンドリーに。`
   },
   en: {
     logoText: 'Law Buddy',
@@ -465,18 +300,21 @@ const texts = {
     placeholderCont: 'Ask a follow-up question...',
     disclaimer: '⚠️ This is not legal advice. For reference only.',
     backLabel: 'Back to Top',
-    chips: ["My boss won't pay overtime 😤","Neighbor's tree in my yard 🌳","Landlord kept my deposit 🏠","Being harassed online 😢","Facing unfair dismissal 💼"],
     turnLabel: (n) => `Question ${n}`,
+    chips: ["My boss won't pay overtime 😤","Neighbor's tree in my yard 🌳","Landlord kept my deposit 🏠","Being harassed online 😢","Facing unfair dismissal 💼"],
     system: `You are a friendly assistant that explains Japanese law in simple, easy-to-understand English.
-When a user describes an everyday problem, explain the relevant Japanese laws in plain language anyone can understand.
-Always consider the full conversation context and refer back to previous messages naturally.
-Format:
-1. Start with empathy (reference previous context from 2nd message onward)
-2. Name the relevant law (e.g., Civil Code Article 233)
-3. Explain what it means in simple terms
-4. List concrete actions the user can take
-5. If needed, suggest consulting a lawyer or professional
-Use emojis naturally. Keep it friendly and never use legal jargon without explaining it.`
+Always consider the full conversation context.
+
+Always respond in this exact JSON format (no markdown code blocks):
+{
+  "reply": "Your answer here (markdown allowed)",
+  "actions": ["Next option 1", "Next option 2", "Next option 3"]
+}
+
+actions should be 3 short, specific things the user might want to do next.
+Examples: "How do I file a complaint?", "Where can I get help?", "Tell me more", "Ask about something else"
+
+Format: empathy → law explanation → concrete actions. Use emojis naturally. Keep it friendly.`
   }
 };
 
@@ -547,20 +385,38 @@ function addMessage(role, content) {
   const chat = document.getElementById('chat');
   const div = document.createElement('div');
   div.className = `message ${role}`;
-
   const avatar = document.createElement('div');
   avatar.className = `avatar ${role}`;
   avatar.textContent = role === 'ai' ? '⚖️' : '👤';
-
   const bubble = document.createElement('div');
   bubble.className = 'bubble';
   if (role === 'ai') bubble.innerHTML = content;
   else bubble.textContent = content;
-
   div.appendChild(avatar);
   div.appendChild(bubble);
   chat.appendChild(div);
   div.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+function addActionButtons(actions) {
+  const chat = document.getElementById('chat');
+  const wrap = document.createElement('div');
+  wrap.className = 'next-actions';
+  actions.forEach(action => {
+    const btn = document.createElement('button');
+    btn.className = 'action-btn';
+    btn.textContent = action;
+    btn.onclick = () => {
+      // ボタンを消す
+      wrap.remove();
+      // その選択肢をユーザーの発言として送信
+      document.getElementById('input').value = action;
+      sendMessage();
+    };
+    wrap.appendChild(btn);
+  });
+  chat.appendChild(wrap);
+  wrap.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
 function showTyping() {
@@ -590,6 +446,9 @@ async function sendMessage() {
   const text = input.value.trim();
   if (!text) return;
 
+  // 残ってるアクションボタンを消す
+  document.querySelectorAll('.next-actions').forEach(el => el.remove());
+
   if (!chatStarted) {
     chatStarted = true;
     document.getElementById('hero').style.display = 'none';
@@ -615,7 +474,7 @@ async function sendMessage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-5',
-        max_tokens: 1000,
+        max_tokens: 1200,
         system: t.system,
         messages: conversationHistory
       })
@@ -624,9 +483,29 @@ async function sendMessage() {
     const data = await response.json();
     removeTyping();
 
-    const reply = data.content?.[0]?.text || (currentLang === 'ja' ? '申し訳ありません、エラーが発生しました。' : 'Sorry, something went wrong.');
+    const rawText = data.content?.[0]?.text || '';
+
+    let reply = '';
+    let actions = [];
+
+    try {
+      // JSON解析を試みる
+      const cleaned = rawText.replace(/```json|```/g, '').trim();
+      const parsed = JSON.parse(cleaned);
+      reply = parsed.reply || rawText;
+      actions = parsed.actions || [];
+    } catch {
+      // JSON失敗時はそのまま表示
+      reply = rawText || (currentLang === 'ja' ? '申し訳ありません、エラーが発生しました。' : 'Sorry, something went wrong.');
+    }
+
     conversationHistory.push({ role: 'assistant', content: reply });
     addMessage('ai', formatReply(reply));
+
+    if (actions.length > 0) {
+      addActionButtons(actions);
+    }
+
   } catch (e) {
     removeTyping();
     conversationHistory.pop();
