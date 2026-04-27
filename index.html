@@ -3,1366 +3,518 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Receipic（レシピック）| レシート・領収書をAIで自動仕訳</title>
-<meta name="description" content="レシートや領収書を写真で撮るだけで、AIが自動で仕訳データを生成。個人事業主・フリーランスの経理を簡単に。無料で月10件まで利用可能。">
-<meta name="keywords" content="仕訳,レシート,領収書,経理,個人事業主,フリーランス,AI,確定申告,会計">
-<meta name="author" content="株式会社TechnoManagementService">
-<meta name="robots" content="index, follow">
-<!-- OGP -->
-<meta property="og:title" content="Receipic（レシピック）| レシート・領収書をAIで自動仕訳">
-<meta property="og:description" content="レシートや領収書を写真で撮るだけで、AIが自動で仕訳データを生成。個人事業主・フリーランスの経理を簡単に。">
-<meta property="og:url" content="https://receipic.com">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Receipic">
-<meta property="og:locale" content="ja_JP">
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@receipic_jp">
-<meta name="twitter:title" content="Receipic（レシピック）| レシート・領収書をAIで自動仕訳">
-<meta name="twitter:description" content="レシートや領収書を写真で撮るだけで、AIが自動で仕訳データを生成。無料で月10件まで利用可能。">
-<!-- canonical -->
-<link rel="canonical" href="https://receipic.com">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EHP2792466"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-EHP2792466');
-</script>
+<title>ほうりつ相談室 / LawBuddy</title>
+<link href="https://fonts.googleapis.com/css2?family=Yomogi&family=Zen+Maru+Gothic:wght@400;500;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Yu Gothic UI',sans-serif;background:#F5F4F0;color:#1a1a1a;min-height:100vh}
-:root{--brand:#4F46E5;--brand-light:#EEF2FF;--success:#059669;--success-light:#ECFDF5;--warn:#D97706;--warn-light:#FFFBEB;--err:#DC2626;--err-light:#FEF2F2;--border:#E5E4E0;--bg:#fff;--bg2:#F5F4F0;--text:#1a1a1a;--text2:#6b7280;--text3:#9ca3af;--radius:10px;--radius-lg:14px}
-.app{max-width:920px;margin:0 auto;padding:2rem 1.25rem}
-.header{display:flex;align-items:center;gap:12px;margin-bottom:1.75rem}
-.logo{width:40px;height:40px;background:var(--brand);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;flex-shrink:0;letter-spacing:-0.5px}
-.header h1{font-size:20px;font-weight:600;color:var(--text);letter-spacing:-0.3px}
-.header .ver{font-size:11px;color:var(--text3);margin-top:2px}
-.plan-bar{display:flex;align-items:center;gap:8px;padding:9px 14px;background:var(--bg);border-radius:var(--radius);border:1px solid var(--border);margin-bottom:1.5rem;font-size:12px}
-.plan-badge{background:var(--brand-light);color:var(--brand);padding:3px 9px;border-radius:5px;font-size:11px;font-weight:600}
-.plan-usage{color:var(--text2);margin-left:auto}
-.plan-usage span{color:var(--text);font-weight:600}
-.btn-upgrade{padding:5px 12px;border:1px solid var(--brand);border-radius:6px;font-size:11px;cursor:pointer;background:transparent;color:var(--brand);font-weight:500}
-.btn-upgrade:hover{background:var(--brand-light)}
-.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
-.tab{padding:9px 18px;font-size:13px;cursor:pointer;border-bottom:2px solid transparent;color:var(--text2);transition:color 0.15s;background:none;border-left:none;border-right:none;border-top:none}
-.tab.active{color:var(--brand);border-bottom-color:var(--brand);font-weight:600}
-.tab:hover:not(.active){color:var(--text)}
-.drop-zone{border:2px dashed var(--border);border-radius:var(--radius-lg);padding:3rem 1rem;text-align:center;cursor:pointer;transition:all 0.15s;background:var(--bg)}
-.drop-zone:hover,.drop-zone.drag{border-color:var(--brand);background:var(--brand-light)}
-.drop-icon{font-size:32px;margin-bottom:12px}
-.drop-zone p{font-size:14px;color:var(--text2);line-height:1.6}
-.drop-zone p strong{color:var(--brand)}
-.drop-zone input{display:none}
-.file-list{display:flex;flex-direction:column;gap:8px;margin-top:1rem}
-.file-item{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg)}
-.file-type-badge{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;flex-shrink:0}
-.type-text{background:#ECFDF5;color:#059669}
-.type-scan{background:#FFFBEB;color:#D97706}
-.type-unknown{background:#F3F4F6;color:#6B7280}
-.type-image{background:#EDE9FE;color:#6D28D9}
-.file-name{font-size:13px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)}
-.file-size{font-size:11px;color:var(--text3)}
-.file-remove{cursor:pointer;font-size:18px;color:var(--text3);line-height:1;padding:2px;background:none;border:none}
-.file-remove:hover{color:var(--err)}
-.analyze-btn{width:100%;margin-top:1rem;padding:12px;background:var(--brand);color:#fff;border:none;border-radius:var(--radius);font-size:14px;font-weight:600;cursor:pointer;transition:opacity 0.15s;letter-spacing:0.2px}
-.analyze-btn:hover:not(:disabled){opacity:0.88}
-.analyze-btn:disabled{opacity:0.45;cursor:not-allowed}
-.status-box{margin-top:1rem;padding:12px 16px;border-radius:var(--radius);font-size:13px;line-height:1.5}
-.status-loading{background:var(--brand-light);color:var(--brand);border:1px solid #C7D2FE}
-.status-success{background:var(--success-light);color:var(--success);border:1px solid #A7F3D0}
-.status-error{background:var(--err-light);color:var(--err);border:1px solid #FECACA}
-.status-warn{background:var(--warn-light);color:var(--warn);border:1px solid #FDE68A}
-.spinner{display:inline-block;width:13px;height:13px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin 0.7s linear infinite;margin-right:7px;vertical-align:middle}
-@keyframes spin{to{transform:rotate(360deg)}}
-.result-section{margin-top:1.75rem}
-.result-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.result-header h2{font-size:16px;font-weight:600}
-.result-meta{font-size:12px;color:var(--text3)}
-.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg)}
-.entries-table{width:100%;border-collapse:collapse;font-size:13px}
-.entries-table th{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text2);font-weight:600;font-size:11px;background:#FAFAF8;white-space:nowrap}
-.entries-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
-.entries-table tr:last-child td{border-bottom:none}
-.entries-table tbody tr:hover td{background:#FAFAF8}
-.debit{color:#1D4ED8;font-weight:500}
-.credit{color:#059669;font-weight:500}
-.amount{font-variant-numeric:tabular-nums;text-align:right;font-weight:500}
-.tax-badge{font-size:10px;padding:2px 7px;border-radius:4px;background:#FEF3C7;color:#92400E;font-weight:500;white-space:nowrap}
-.tax-badge.free{background:#F3F4F6;color:#6B7280}
-.source-badge{font-size:10px;padding:2px 8px;border-radius:4px;background:#F3F4F6;color:#6B7280;white-space:nowrap;max-width:100px;overflow:hidden;text-overflow:ellipsis;display:inline-block}
-.action-row{display:flex;gap:8px;margin-top:1rem;flex-wrap:wrap}
-.btn-outline{padding:9px 16px;border:1px solid var(--border);border-radius:var(--radius);font-size:13px;cursor:pointer;background:var(--bg);color:var(--text);transition:background 0.15s;font-weight:500}
-.btn-outline:hover{background:var(--bg2)}
-.btn-premium{border-color:var(--brand);color:var(--brand)}
-.btn-premium:hover{background:var(--brand-light)}
-.lock{font-size:11px;margin-right:3px}
-.parse-warn{display:flex;gap:10px;align-items:flex-start;padding:11px 14px;background:var(--warn-light);border:1px solid #FDE68A;border-radius:var(--radius);font-size:12px;color:#92400E;margin-top:10px;line-height:1.5}
-.section-title{font-size:11px;font-weight:600;color:var(--text3);letter-spacing:0.07em;text-transform:uppercase;margin:1.5rem 0 10px}
-.settings-box{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem}
-.settings-box h3{font-size:14px;font-weight:600;margin-bottom:6px}
-.settings-box p{font-size:12px;color:var(--text2);margin-bottom:12px;line-height:1.6}
-.input-row{display:flex;gap:8px}
-.input-row input{flex:1;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);font-size:13px;background:var(--bg);color:var(--text);outline:none}
-.input-row input:focus{border-color:var(--brand)}
-.input-row button{padding:9px 16px;border:1px solid var(--border);border-radius:var(--radius);font-size:13px;cursor:pointer;background:var(--bg);color:var(--text);font-weight:500;white-space:nowrap}
-.input-row button:hover{background:var(--bg2)}
-.key-status{font-size:12px;margin-top:8px;padding:6px 10px;border-radius:6px}
-.key-ok{background:var(--success-light);color:var(--success)}
-.key-none{background:#FFF7ED;color:#C2410C}
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:100;align-items:center;justify-content:center}
-.modal-bg.open{display:flex}
-.modal{background:var(--bg);border-radius:var(--radius-lg);padding:1.75rem;width:min(480px,94vw);border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.12)}
-.modal h3{font-size:17px;font-weight:600;margin-bottom:10px}
-.modal>p{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:18px}
-.plans{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-.plan-card{border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center}
-.plan-card.featured{border:2px solid var(--brand)}
-.plan-name{font-size:12px;font-weight:600;margin-bottom:4px}
-.plan-price{font-size:22px;font-weight:700;margin:6px 0}
-.plan-price span{font-size:12px;font-weight:400;color:var(--text2)}
-.plan-feats{font-size:11px;color:var(--text2);text-align:left;line-height:1.8;margin-top:10px}
-.modal-close{float:right;cursor:pointer;font-size:20px;color:var(--text3);line-height:1;background:none;border:none}
-.modal-close:hover{color:var(--text)}
-.modal-year{font-size:12px;text-align:center;color:var(--text2);margin-bottom:12px}
-.empty-state{padding:2.5rem;text-align:center;color:var(--text3);font-size:13px;line-height:1.7}
-.error-detail{font-size:12px;margin-top:6px;opacity:0.85;line-height:1.5}
-.browser-banner{display:none;padding:12px 16px;background:#FFF7ED;border:1px solid #FDE68A;border-radius:var(--radius);margin-bottom:1rem;font-size:13px;color:#92400E;line-height:1.6}
-.browser-banner-btn{display:inline-block;margin-top:8px;padding:8px 16px;background:var(--brand);color:#fff;border:none;border-radius:var(--radius);font-size:13px;cursor:pointer;font-weight:600}
-.ad-card{margin-top:1rem;padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);display:flex;align-items:center;gap:12px}
-.ad-card-logo{width:44px;height:44px;border-radius:8px;background:var(--brand-light);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.ad-card-body{flex:1}
-.ad-card-label{font-size:10px;color:var(--text3);margin-bottom:2px}
-.ad-card-title{font-size:13px;font-weight:600;color:var(--text)}
-.ad-card-sub{font-size:11px;color:var(--text2);margin-top:2px}
-.ad-card-btn{font-size:11px;padding:5px 12px;border:1px solid var(--border);border-radius:6px;background:var(--bg);cursor:pointer;color:var(--text);white-space:nowrap;flex-shrink:0}
-.ad-card-btn:hover{background:var(--bg2)}
-.ad-banner{margin-top:1.5rem;padding:10px 14px;background:#F9FAFB;border:1px solid var(--border);border-radius:var(--radius);font-size:11px;color:var(--text3);text-align:center}
-.edit-input{width:100%;padding:4px 6px;border:1px solid var(--brand);border-radius:4px;font-size:12px;background:var(--bg);color:var(--text);outline:none}
-.edit-input:focus{box-shadow:0 0 0 2px var(--brand-light)}
-.del-btn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:16px;padding:2px 6px;border-radius:4px;line-height:1}
-.del-btn:hover{background:var(--err-light);color:var(--err)}
-.edit-row td{background:var(--brand-light) !important;padding:6px 8px !important}
-.row-actions{display:flex;gap:4px;align-items:center}
-.edit-btn{background:none;border:1px solid var(--border);cursor:pointer;color:var(--text2);font-size:11px;padding:3px 8px;border-radius:4px}
-.edit-btn:hover{background:var(--bg2)}
-.save-btn{background:var(--brand);border:none;cursor:pointer;color:#fff;font-size:11px;padding:3px 8px;border-radius:4px}
-.save-btn:hover{opacity:0.85}
-.camera-btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
-.camera-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:2rem 1rem;border:2px dashed var(--border);border-radius:var(--radius-lg);background:var(--bg);cursor:pointer;transition:all 0.15s;text-align:center}
-.camera-btn:hover{border-color:var(--brand);background:var(--brand-light)}
-.camera-btn-icon{font-size:32px}
-.camera-btn-label{font-size:14px;font-weight:600;color:var(--text)}
-.camera-btn-sub{font-size:11px;color:var(--text3)}
-.camera-btns input[type=file]{display:none}
+  :root {
+    --sun: #FFB800;
+    --orange: #FF6B35;
+    --peach: #FFE5D0;
+    --cream: #FFFBF5;
+    --white: #FFFFFF;
+    --ink: #2D2013;
+    --ink-light: #6B4F2A;
+    --shadow: rgba(255,107,53,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(255,184,0,0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(255,107,53,0.10) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(255,229,208,0.3) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  header {
+    padding: 24px 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--sun), var(--orange));
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 12px var(--shadow);
+    transform: rotate(-3deg);
+    transition: transform 0.2s;
+  }
+
+  .logo:hover .logo-icon { transform: rotate(0deg); }
+  .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+
+  .logo-ja { font-family: 'Yomogi', cursive; font-size: 18px; color: var(--orange); letter-spacing: 0.05em; }
+  .logo-en { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 600; color: var(--ink-light); letter-spacing: 0.12em; text-transform: uppercase; }
+
+  .header-right { display: flex; align-items: center; gap: 10px; }
+
+  .back-btn {
+    display: none; align-items: center; gap: 6px;
+    padding: 6px 14px;
+    background: var(--white);
+    border: 1.5px solid rgba(255,107,53,0.3);
+    border-radius: 20px;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 12px; color: var(--orange); cursor: pointer;
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: var(--peach); border-color: var(--orange); transform: translateY(-1px); }
+  .back-btn.visible { display: flex; }
+
+  .lang-toggle { display: flex; background: var(--white); border-radius: 20px; padding: 3px; box-shadow: 0 2px 8px var(--shadow); gap: 2px; }
+  .lang-btn { padding: 5px 14px; border-radius: 16px; border: none; background: transparent; font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; color: var(--ink-light); transition: all 0.2s; }
+  .lang-btn.active { background: linear-gradient(135deg, var(--sun), var(--orange)); color: white; box-shadow: 0 2px 6px rgba(255,107,53,0.3); }
+
+  .hero { text-align: center; padding: 20px 0 24px; animation: fadeUp 0.6s ease both; }
+  .hero-emoji { font-size: 52px; display: block; margin-bottom: 12px; animation: bounce 2s ease-in-out infinite; }
+
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+  .hero h1 { font-family: 'Yomogi', cursive; font-size: 26px; color: var(--ink); line-height: 1.4; margin-bottom: 8px; }
+  .hero h1 span { color: var(--orange); }
+  .hero p { font-size: 13px; color: var(--ink-light); line-height: 1.7; }
+
+  .examples { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 16px 0 20px; animation: fadeUp 0.6s 0.1s ease both; }
+
+  .chip {
+    background: var(--white); border: 1.5px solid rgba(255,107,53,0.2); border-radius: 20px;
+    padding: 7px 14px; font-size: 12px; color: var(--ink); cursor: pointer;
+    transition: all 0.2s; box-shadow: 0 2px 6px var(--shadow); white-space: nowrap;
+  }
+  .chip:hover { background: var(--peach); border-color: var(--orange); transform: translateY(-2px); box-shadow: 0 4px 12px var(--shadow); }
+
+  .chat-area { flex: 1; display: flex; flex-direction: column; gap: 16px; padding: 8px 0; min-height: 200px; animation: fadeUp 0.6s 0.2s ease both; }
+
+  .message { display: flex; gap: 10px; align-items: flex-start; animation: fadeUp 0.3s ease both; }
+  .message.user { flex-direction: row-reverse; }
+
+  .avatar { width: 36px; height: 36px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .avatar.ai { background: linear-gradient(135deg, var(--sun), var(--orange)); box-shadow: 0 3px 10px var(--shadow); }
+  .avatar.user { background: var(--ink); }
+
+  .bubble { max-width: 75%; padding: 12px 16px; border-radius: 18px; font-size: 14px; line-height: 1.7; box-shadow: 0 2px 8px var(--shadow); }
+  .message.ai .bubble { background: var(--white); border-radius: 4px 18px 18px 18px; color: var(--ink); }
+  .message.user .bubble { background: linear-gradient(135deg, var(--orange), #FF4500); border-radius: 18px 4px 18px 18px; color: white; }
+
+  .bubble h3 { font-size: 14px; font-weight: 700; margin: 10px 0 4px; color: var(--ink); }
+  .bubble li { margin-left: 16px; margin-bottom: 2px; }
+
+  .law-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(255,184,0,0.15), rgba(255,107,53,0.15));
+    border: 1px solid rgba(255,107,53,0.3);
+    border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; color: var(--orange); margin-bottom: 8px;
+  }
+
+  /* 次のアクションボタン */
+  .next-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    padding-left: 46px;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .action-btn {
+    background: var(--white);
+    border: 1.5px solid rgba(255,107,53,0.3);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+
+  .action-btn:hover {
+    background: var(--peach);
+    border-color: var(--orange);
+    color: var(--orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+  }
+
+  .action-btn:active { transform: scale(0.97); }
+
+  /* 区切り線 */
+  .turn-divider { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+  .turn-divider span { font-size: 10px; color: var(--ink-light); opacity: 0.4; white-space: nowrap; }
+  .turn-divider::before, .turn-divider::after { content: ''; flex: 1; height: 1px; background: rgba(107,79,42,0.1); }
+
+  .typing { display: flex; align-items: center; gap: 4px; padding: 14px 16px; }
+  .dot { width: 7px; height: 7px; background: var(--orange); border-radius: 50%; animation: typing 1.2s ease-in-out infinite; }
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-6px); opacity: 1; } }
+
+  .input-area { position: sticky; bottom: 0; padding: 16px 0 24px; background: linear-gradient(transparent, var(--cream) 30%); animation: fadeUp 0.6s 0.3s ease both; }
+
+  .input-box {
+    display: flex; align-items: flex-end; gap: 10px;
+    background: var(--white); border-radius: 24px; padding: 10px 10px 10px 18px;
+    box-shadow: 0 4px 20px var(--shadow), 0 0 0 2px rgba(255,107,53,0.1);
+    transition: box-shadow 0.2s;
+  }
+  .input-box:focus-within { box-shadow: 0 4px 24px rgba(255,107,53,0.2), 0 0 0 2px rgba(255,107,53,0.3); }
+
+  textarea { flex: 1; border: none; outline: none; font-family: 'Zen Maru Gothic', sans-serif; font-size: 14px; color: var(--ink); background: transparent; resize: none; max-height: 120px; line-height: 1.6; }
+  textarea::placeholder { color: rgba(107,79,42,0.4); }
+
+  .send-btn { width: 42px; height: 42px; background: linear-gradient(135deg, var(--sun), var(--orange)); border: none; border-radius: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; box-shadow: 0 3px 10px rgba(255,107,53,0.3); }
+  .send-btn:hover { transform: scale(1.05); box-shadow: 0 5px 14px rgba(255,107,53,0.4); }
+  .send-btn:active { transform: scale(0.97); }
+  .send-btn svg { width: 18px; height: 18px; fill: white; }
+
+  .disclaimer { text-align: center; font-size: 10px; color: var(--ink-light); opacity: 0.6; margin-top: 10px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,107,53,0.3); border-radius: 4px; }
 </style>
 </head>
 <body>
-<div class="browser-banner" id="browserBanner">
-  📱 LINEやSNSアプリ内ブラウザではカメラが使えない場合があります。<br>
-  外部ブラウザ（Chrome・Safari）で開くと正しく動作します。
-  <br>
-  <button class="browser-banner-btn" onclick="openExternalBrowser()" id="browserBannerBtn">Chromeで開く</button>
-</div>
-<div class="app">
+<div class="wrapper">
 
-<div class="header">
-  <div class="logo">RS</div>
-  <div>
-    <h1>Receipic</h1>
-    <div class="ver">v1.0</div>
-  </div>
-</div>
-
-<div class="plan-bar">
-  <div class="plan-badge" id="planBadge">無料プラン</div>
-  <span style="color:var(--text2)" id="planUsageLabel">今月の処理件数</span>
-  <div class="plan-usage"><span id="usageCount">0</span> <span id="usageUnit">/ 10 件</span></div>
-  <button class="btn-upgrade" id="upgradeBtn" onclick="openUpgrade()">アップグレード</button>
-  <div style="display:flex;gap:4px;margin-left:8px">
-    <span id="langJa" onclick="switchLang('ja')" style="cursor:pointer;font-size:12px;font-weight:700;padding:3px 6px;border-radius:4px;background:var(--brand-light);color:var(--brand)">JP</span>
-    <span id="langEn" onclick="switchLang('en')" style="cursor:pointer;font-size:12px;font-weight:400;padding:3px 6px;border-radius:4px;color:var(--text2)">EN</span>
-  </div>
-</div>
-
-<div class="tabs">
-  <button class="tab active" id="tabPhoto" onclick="switchTab('photo',this)">📷 写真</button>
-  <button class="tab" id="tabPdf" onclick="switchTab('pdf',this)">📄 PDF</button>
-  <button class="tab" id="tabResult" onclick="switchTab('result',this)">📋 仕訳一覧</button>
-  <button class="tab" id="tabHistory" onclick="switchTab('history',this)">🕐 履歴</button>
-  <button class="tab" id="tabSettings" onclick="switchTab('settings',this)">⚙️ 設定</button>
-</div>
-
-<!-- 写真タブ -->
-<div id="tab-photo">
-  <div class="camera-btns">
-    <button class="camera-btn" onclick="document.getElementById('cameraInput').click()">
-      <span class="camera-btn-icon">📷</span>
-      <span class="camera-btn-label" id="cameraBtnLabel">カメラで撮影</span>
-      <span class="camera-btn-sub" id="cameraBtnSub">領収書・レシートをその場で</span>
-    </button>
-    <button class="camera-btn" onclick="document.getElementById('photoInput').click()">
-      <span class="camera-btn-icon">🖼️</span>
-      <span class="camera-btn-label" id="galleryBtnLabel">画像を選択</span>
-      <span class="camera-btn-sub" id="galleryBtnSub">カメラロールから選ぶ</span>
-    </button>
-    <input type="file" id="cameraInput" accept="image/*" capture="environment">
-    <input type="file" id="photoInput" accept="image/*" multiple>
-  </div>
-
-  <div class="file-list" id="photoList"></div>
-
-  <button class="analyze-btn" id="analyzePhotoBtn" onclick="startPhotoAnalysis()" disabled>写真を解析して仕訳を作成</button>
-  <div id="photoStatusBox" style="display:none" class="status-box"></div>
-  <div class="ad-card" id="adBannerPhoto">
-    <div class="ad-card-logo">⚖️</div>
-    <div class="ad-card-body">
-      <div class="ad-card-label" id="adLabelPhoto">PR</div>
-      <div class="ad-card-title" id="adTitlePhoto">税理士に経費処理を相談しませんか？</div>
-      <div class="ad-card-sub" id="adSubPhoto">初回相談無料・全国対応・オンライン対応</div>
-    </div>
-    <button class="ad-card-btn" id="adBtnPhoto" onclick="window.open('https://receipic.com','_blank')">詳しくはこちら</button>
-  </div>
-  <!-- 広告スペース -->
-  <div id="ad-slot-photo" style="margin-top:16px;min-height:100px;display:flex;align-items:center;justify-content:center;background:var(--color-background-secondary);border-radius:var(--radius);font-size:12px;color:var(--text2)">広告スペース</div>
-</div>
-
-<!-- PDFタブ -->
-<div id="tab-pdf" style="display:none">
-  <div class="drop-zone" id="dropZone"
-    onclick="document.getElementById('fileInput').click()"
-    ondrop="handleDrop(event)"
-    ondragover="handleDragOver(event)"
-    ondragleave="handleDragLeave(event)">
-    <div class="drop-icon">📄</div>
-    <p id="dropZoneMain"><strong>クリックまたはドラッグ</strong>でPDFを追加</p>
-    <p style="margin-top:6px;font-size:12px" id="dropZoneSub">クレジット明細・高速道路明細・燃料明細など対応</p>
-    <input type="file" id="fileInput" multiple accept=".pdf" onchange="handleFileSelect(event)">
-  </div>
-
-  <div class="file-list" id="fileList"></div>
-
-  <div id="sizeWarning" style="display:none" class="parse-warn">
-    <span>⚠️</span>
-    <div>スキャンPDFが大きめです。自動的にドキュメントモードで送信します。</div>
-  </div>
-
-  <button class="analyze-btn" id="analyzeBtn" onclick="startAnalysis()" disabled>PDFを解析して仕訳を作成</button>
-  <div id="statusBox" style="display:none" class="status-box"></div>
-  <div class="ad-card" id="adBannerText">
-    <div class="ad-card-logo">⚖️</div>
-    <div class="ad-card-body">
-      <div class="ad-card-label" id="adLabelPdf">PR</div>
-      <div class="ad-card-title" id="adTitlePdf">税理士に経費処理を相談しませんか？</div>
-      <div class="ad-card-sub" id="adSubPdf">初回相談無料・全国対応・オンライン対応</div>
-    </div>
-    <button class="ad-card-btn" id="adBtnPdf" onclick="window.open('https://receipic.com','_blank')">詳しくはこちら</button>
-  </div>
-  <!-- 広告スペース -->
-  <div id="ad-slot-pdf" style="margin-top:16px;min-height:100px;display:flex;align-items:center;justify-content:center;background:var(--color-background-secondary);border-radius:var(--radius);font-size:12px;color:var(--text2)">広告スペース</div>
-</div>
-<div id="tab-result" style="display:none">
-  <div id="resultSection" class="result-section">
-    <div class="result-header">
-      <h2 id="resultTitle">生成された仕訳</h2>
-      <span class="result-meta" id="resultMeta"></span>
-    </div>
-    <div class="table-wrap">
-      <table class="entries-table">
-        <thead>
-          <tr>
-            <th id="th-date">日付</th>
-            <th id="th-debit">借方科目</th>
-            <th id="th-credit">貸方科目</th>
-            <th id="th-amount" style="text-align:right">金額</th>
-            <th id="th-tax">税区分</th>
-            <th id="th-desc">摘要</th>
-            <th id="th-source">出典</th>
-          </tr>
-        </thead>
-        <tbody id="entriesBody"></tbody>
-      </table>
-    </div>
-    <div id="emptyResult" class="empty-state" style="display:none">まだ仕訳がありません。写真またはPDFを解析してください。</div>
-    <div class="action-row">
-      <button class="btn-outline" id="copyBtn" onclick="copyTSV()">コピー（タブ区切り）</button>
-      <button class="btn-outline" id="csvBtn" onclick="handleCSVDownload()">CSV出力</button>
-      <button class="btn-outline btn-premium" id="sheetBtn" onclick="handleSheetExport()">🔒 スプレッドシート連携（有料）</button>
-      <button class="btn-outline btn-premium" id="taxBtn" onclick="handleTaxAdvisor()">🔒 税理士に相談（有料）</button>
-    </div>
-  </div>
-</div>
-
-<!-- 履歴タブ -->
-<div id="tab-history" style="display:none">
-  <div class="result-section">
-    <div class="result-header">
-      <h2 id="historyTitle">保存済み仕訳</h2>
-      <span class="result-meta" id="historyMeta"></span>
-    </div>
-    <div class="table-wrap">
-      <table class="entries-table">
-        <thead>
-          <tr>
-            <th id="hth-date">日付</th>
-            <th id="hth-debit">借方科目</th>
-            <th id="hth-credit">貸方科目</th>
-            <th id="hth-amount" style="text-align:right">金額</th>
-            <th id="hth-tax">税区分</th>
-            <th id="hth-desc">摘要</th>
-            <th id="hth-source">出典</th>
-          </tr>
-        </thead>
-        <tbody id="historyBody"></tbody>
-      </table>
-    </div>
-    <div class="action-row" style="margin-top:1rem">
-      <button class="btn-outline btn-premium" id="exportHistoryBtn" onclick="handleHistoryCSV()"><span class="lock">🔒</span>CSV出力（有料）</button>
-      <button class="btn-outline btn-premium" id="exportHistorySheetBtn" onclick="handleHistorySheet()"><span class="lock">🔒</span>スプレッドシート（有料）</button>
-      <button class="btn-outline" id="clearHistoryBtn" onclick="clearHistory()" style="color:var(--err);border-color:var(--err)">🗑️ 履歴を削除</button>
-    </div>
-  </div>
-</div>
-
-<!-- 設定タブ -->
-<div id="tab-settings" style="display:none">
-  <div class="section-title" id="activationSectionTitle">プランのアクティベーション</div>
-  <div class="settings-box">
-    <h3 id="activationTitle">🔑 アクティベーションコードを入力</h3>
-    <p id="activationDesc" style="font-size:13px;color:var(--text2);margin-bottom:12px">購入後に送付されたコードを入力してください。</p>
-    <div class="input-row">
-      <input type="text" id="activationInput" placeholder="STANDARD-XXXX" style="text-transform:uppercase;letter-spacing:1px" autocomplete="off">
-      <button id="activationBtn" onclick="handleActivation()">適用</button>
-    </div>
-    <div class="key-status key-none" id="activationStatus">無料プラン（月10件）</div>
-  </div>
-
-  <div class="settings-box" style="margin-top:1rem">
-    <p id="settingsFeedback">フィードバックやご意見はこちらまで：<br><a href="mailto:receipic.jp@gmail.com" style="color:var(--brand);font-weight:600">receipic.jp@gmail.com</a></p>
-  </div>
-  <!-- 広告スペース -->
-  <div id="ad-slot-settings" style="margin-top:16px;min-height:100px;display:flex;align-items:center;justify-content:center;background:var(--color-background-secondary);border-radius:var(--radius);font-size:12px;color:var(--text2)">広告スペース</div>
-</div>
-
-<!-- アップグレードモーダル -->
-<div class="modal-bg" id="upgradeModal">
-  <div class="modal" style="width:min(600px,95vw)">
-    <button class="modal-close" onclick="closeUpgrade()">✕</button>
-    <h3 id="modalTitle">プランをアップグレード</h3>
-
-    <div style="display:flex;gap:8px;margin-bottom:16px;background:var(--color-background-secondary);border-radius:var(--radius);padding:4px">
-      <button id="billingMonthly" onclick="setBilling('monthly')" style="flex:1;padding:6px;border:none;border-radius:6px;cursor:pointer;font-size:13px;background:var(--bg);font-weight:600">月払い</button>
-      <button id="billingYearly" onclick="setBilling('yearly')" style="flex:1;padding:6px;border:none;border-radius:6px;cursor:pointer;font-size:13px;background:transparent;color:var(--text2)">年払い <span style="font-size:11px;color:var(--brand)">2ヶ月お得</span></button>
-    </div>
-
-    <div class="plans" style="grid-template-columns:repeat(3,1fr)">
-      <div class="plan-card">
-        <div class="plan-name" style="color:var(--text2)" id="planFreeName">無料</div>
-        <div class="plan-price">¥0<span>/月</span></div>
-        <div class="plan-feats" id="planFreeFeats">✓ 月10件まで<br>✓ 広告あり<br>✓ PDF・写真対応</div>
-      </div>
-      <div class="plan-card featured">
-        <div class="plan-name" style="color:var(--brand)">Standard</div>
-        <div class="plan-price" style="color:var(--brand)" id="planStandardPrice">¥1,280<span>/月</span></div>
-        <div class="plan-feats" id="planStandardFeats">✓ 月80件まで<br>✓ 広告なし<br>✓ CSV出力<br>✓ スプレッドシート連携<br>✓ 税理士紹介</div>
-        <button class="analyze-btn" style="margin-top:12px;padding:8px" id="btnStandard" onclick="goStripe('standard')">このプランを選ぶ</button>
-      </div>
-      <div class="plan-card" style="border-color:var(--text2)">
-        <div class="plan-name" style="color:var(--text)">PRO</div>
-        <div class="plan-price" id="planProPrice">¥2,980<span>/月</span></div>
-        <div class="plan-feats" id="planProFeats">✓ 月200件まで<br>✓ Standardの全機能<br>✓ 優先サポート</div>
-        <button class="analyze-btn" style="margin-top:12px;padding:8px;background:var(--text)" id="btnPro" onclick="goStripe('pro')">このプランを選ぶ</button>
+  <header>
+    <div class="logo" onclick="goTop()">
+      <div class="logo-icon">⚖️</div>
+      <div class="logo-text">
+        <span class="logo-ja" id="logo-ja">ほうりつ相談室</span>
+        <span class="logo-en">LAW BUDDY</span>
       </div>
     </div>
-    <button class="btn-outline" style="width:100%;margin-top:8px" onclick="closeUpgrade()">閉じる</button>
+    <div class="header-right">
+      <button class="back-btn" id="back-btn" onclick="goTop()">
+        🏠 <span id="back-label">トップに戻る</span>
+      </button>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('ja')">JP</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero" id="hero">
+    <span class="hero-emoji">🌟</span>
+    <h1 id="hero-title">なんでも<span>気軽に</span>聞いてみて！</h1>
+    <p id="hero-sub">法律のことって難しそう…でも大丈夫。<br>あなたの言葉で話しかけてね。</p>
   </div>
+
+  <div class="examples" id="examples">
+    <div class="chip" onclick="useExample(this)">残業代が払われない 😤</div>
+    <div class="chip" onclick="useExample(this)">隣の木が敷地に入ってきた 🌳</div>
+    <div class="chip" onclick="useExample(this)">敷金が返ってこない 🏠</div>
+    <div class="chip" onclick="useExample(this)">ネット上で悪口を書かれた 😢</div>
+    <div class="chip" onclick="useExample(this)">解雇されそう 💼</div>
+  </div>
+
+  <div class="chat-area" id="chat"></div>
+
+  <div class="input-area">
+    <div class="input-box">
+      <textarea id="input" rows="1" placeholder="困ってることを話しかけてね..."
+        onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="send-btn" onclick="sendMessage()">
+        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+      </button>
+    </div>
+    <p class="disclaimer" id="disclaimer">⚠️ このサービスは法的アドバイスではありません。参考情報としてご活用ください。</p>
+  </div>
+
 </div>
 
 <script>
+let currentLang = 'ja';
+let chatStarted = false;
+let conversationHistory = [];
+let turnCount = 0;
 
-/* 言語設定 */
-let currentLang = localStorage.getItem('receipic_lang') || 'ja';
-
-const T = {
+const texts = {
   ja: {
-    appName: 'Receipic',
-    freePlan: '無料プラン',
-    usage: '今月の処理件数',
-    upgrade: 'アップグレード',
-    tabPhoto: '📷 写真',
-    tabPdf: '📄 PDF',
-    tabResult: '📋 仕訳一覧',
-    tabSettings: '⚙️ 設定',
-    analyzePhoto: '写真を解析して仕訳を作成',
-    analyzePdf: 'PDFを解析して仕訳を作成',
-    cameraBtn: 'カメラで撮影',
-    cameraSub: '領収書・レシートをその場で',
-    galleryBtn: '画像を選択',
-    gallerySub: 'カメラロールから選ぶ',
-    resultTitle: '生成された仕訳',
-    copy: 'コピー（タブ区切り）',
-    csvPremium: 'CSV出力（有料）',
-    sheetPremium: 'スプレッドシート連携（有料）',
-    taxPremium: '税理士に相談（有料）',
-    date: '日付', debit: '借方科目', credit: '貸方科目',
-    amount: '金額', tax: '税区分', desc: '摘要', source: '出典',
-    edit: '編集', save: '保存', cancel: '取消',
-    analyzing: 'を解析中...',
-    success: '件の仕訳を生成しました',
-    noData: 'データなし',
-    adBanner: '📢 広告スペース（無料プラン）— アップグレードで非表示に',
+    logoText: 'ほうりつ相談室',
+    heroTitle: 'なんでも<span>気軽に</span>聞いてみて！',
+    heroSub: '法律のことって難しそう…でも大丈夫。<br>あなたの言葉で話しかけてね。',
+    placeholderFirst: '困ってることを話しかけてね...',
+    placeholderCont: 'さらに詳しく聞いてみて...',
+    disclaimer: '⚠️ このサービスは法的アドバイスではありません。参考情報としてご活用ください。',
+    backLabel: 'トップに戻る',
+    turnLabel: (n) => `${n}回目の相談`,
+    chips: ['残業代が払われない 😤','隣の木が敷地に入ってきた 🌳','敷金が返ってこない 🏠','ネット上で悪口を書かれた 😢','解雇されそう 💼'],
+    system: `あなたは日本の法律をわかりやすく説明するアシスタントです。
+ユーザーが日常の困りごとを話しかけてきたら、関係する日本の法律をわかりやすく、親しみやすい言葉で説明してください。
+会話の文脈を必ず踏まえて回答してください。
+
+必ず以下のJSON形式で返答してください（マークダウンのコードブロックは不要）：
+{
+  "reply": "ここに回答を書く（マークダウン使用可）",
+  "actions": ["次の選択肢1", "次の選択肢2", "次の選択肢3"]
+}
+
+actionsには、ユーザーが次に取りたいと思う行動を3つ、短く具体的に書いてください。
+例：「請求書の作り方を教えて」「相談窓口はどこ？」「もっと詳しく知りたい」「別の問題を相談する」
+
+回答は共感→法律説明→具体的アクションの順で。絵文字を適度に使いフレンドリーに。`
   },
   en: {
-    appName: 'Receipic',
-    freePlan: 'Free Plan',
-    usage: 'This month',
-    upgrade: 'Upgrade',
-    tabPhoto: '📷 Photo',
-    tabPdf: '📄 PDF',
-    tabResult: '📋 Journal',
-    tabSettings: '⚙️ Settings',
-    analyzePhoto: 'Analyze photos & create journal entries',
-    analyzePdf: 'Analyze PDF & create journal entries',
-    cameraBtn: 'Take Photo',
-    cameraSub: 'Capture receipt on the spot',
-    galleryBtn: 'Select Image',
-    gallerySub: 'Choose from gallery',
-    resultTitle: 'Journal Entries',
-    copy: 'Copy (Tab-separated)',
-    csvPremium: 'Export CSV (Premium)',
-    sheetPremium: 'Spreadsheet Sync (Premium)',
-    taxPremium: 'Consult Tax Advisor (Premium)',
-    date: 'Date', debit: 'Debit', credit: 'Credit',
-    amount: 'Amount', tax: 'Tax', desc: 'Description', source: 'Source',
-    edit: 'Edit', save: 'Save', cancel: 'Cancel',
-    analyzing: ' analyzing...',
-    success: ' entries generated',
-    noData: 'No data',
-    adBanner: '📢 Ad space (Free Plan) — Upgrade to hide',
+    logoText: 'Law Buddy',
+    heroTitle: 'Ask me <span>anything</span>!',
+    heroSub: "Law sounds scary... but don't worry!<br>Just talk to me like a friend.",
+    placeholderFirst: "Tell me what's bothering you...",
+    placeholderCont: 'Ask a follow-up question...',
+    disclaimer: '⚠️ This is not legal advice. For reference only.',
+    backLabel: 'Back to Top',
+    turnLabel: (n) => `Question ${n}`,
+    chips: ["My boss won't pay overtime 😤","Neighbor's tree in my yard 🌳","Landlord kept my deposit 🏠","Being harassed online 😢","Facing unfair dismissal 💼"],
+    system: `You are a friendly assistant that explains Japanese law in simple, easy-to-understand English.
+Always consider the full conversation context.
+
+Always respond in this exact JSON format (no markdown code blocks):
+{
+  "reply": "Your answer here (markdown allowed)",
+  "actions": ["Next option 1", "Next option 2", "Next option 3"]
+}
+
+actions should be 3 short, specific things the user might want to do next.
+Examples: "How do I file a complaint?", "Where can I get help?", "Tell me more", "Ask about something else"
+
+Format: empathy → law explanation → concrete actions. Use emojis naturally. Keep it friendly.`
   }
 };
 
-function t(key) { return T[currentLang][key] || key; }
+function goTop() {
+  document.getElementById('chat').innerHTML = '';
+  document.getElementById('hero').style.display = '';
+  document.getElementById('examples').style.display = '';
+  document.getElementById('back-btn').classList.remove('visible');
+  document.getElementById('input').value = '';
+  document.getElementById('input').style.height = 'auto';
+  document.getElementById('input').placeholder = texts[currentLang].placeholderFirst;
+  chatStarted = false;
+  conversationHistory = [];
+  turnCount = 0;
+}
 
-function switchLang(lang) {
+function setLang(lang) {
   currentLang = lang;
-  localStorage.setItem('receipic_lang', lang);
-  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  const t = texts[lang];
+  document.getElementById('logo-ja').textContent = t.logoText;
+  document.getElementById('hero-title').innerHTML = t.heroTitle;
+  document.getElementById('hero-sub').innerHTML = t.heroSub;
+  document.getElementById('input').placeholder = chatStarted ? t.placeholderCont : t.placeholderFirst;
+  document.getElementById('disclaimer').textContent = t.disclaimer;
+  document.getElementById('back-label').textContent = t.backLabel;
+  const chips = document.getElementById('examples').querySelectorAll('.chip');
+  chips.forEach((c, i) => c.textContent = t.chips[i]);
+  if (chatStarted) goTop();
 }
 
-function applyLang() {
-  const isEn = currentLang === 'en';
-  document.getElementById('langJa').style.fontWeight = !isEn ? '700' : '400';
-  document.getElementById('langEn').style.fontWeight = isEn ? '700' : '400';
+function useExample(el) {
+  const text = el.textContent.replace(/\p{Emoji}/gu, '').trim();
+  document.getElementById('input').value = text;
+  autoResize(document.getElementById('input'));
+  sendMessage();
+}
 
-  /* プランバー */
-  document.getElementById('planBadge').textContent = isEn ? 'Free Plan' : '無料プラン';
-  document.getElementById('planUsageLabel').textContent = isEn ? 'This month' : '今月の処理件数';
-  document.getElementById('upgradeBtn').textContent = isEn ? 'Upgrade' : 'アップグレード';
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+}
 
-  /* タブ */
-  document.getElementById('tabPhoto').textContent = isEn ? '📷 Photo' : '📷 写真';
-  document.getElementById('tabPdf').textContent = isEn ? '📄 PDF' : '📄 PDF';
-  document.getElementById('tabResult').textContent = isEn ? '📋 Journal' : '📋 仕訳一覧';
-  document.getElementById('tabSettings').textContent = isEn ? '⚙️ Settings' : '⚙️ 設定';
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+}
 
-  /* 写真タブ */
-  document.getElementById('cameraBtnLabel').textContent = isEn ? 'Take Photo' : 'カメラで撮影';
-  document.getElementById('cameraBtnSub').textContent = isEn ? 'Capture receipt on the spot' : '領収書・レシートをその場で';
-  document.getElementById('galleryBtnLabel').textContent = isEn ? 'Select Image' : '画像を選択';
-  document.getElementById('galleryBtnSub').textContent = isEn ? 'Choose from gallery' : 'カメラロールから選ぶ';
-  document.getElementById('analyzePhotoBtn').textContent = isEn ? 'Analyze photos & create journal entries' : '写真を解析して仕訳を作成';
+function formatReply(reply) {
+  return reply
+    .replace(/^## (.*?)$/gm, '<h3>$1</h3>')
+    .replace(/^### (.*?)$/gm, '<strong>$1</strong>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/【(.*?)】/g, '<div class="law-tag">📜 $1</div>')
+    .replace(/^- (.*?)$/gm, '<li>$1</li>')
+    .replace(/\n\n/g, '<br><br>')
+    .replace(/\n/g, '<br>');
+}
 
-  /* PDFタブ */
-  document.getElementById('dropZoneMain').innerHTML = isEn ? '<strong>Click or drag</strong> to add PDF' : '<strong>クリックまたはドラッグ</strong>でPDFを追加';
-  document.getElementById('dropZoneSub').textContent = isEn ? 'Credit cards, tolls, fuel receipts supported' : 'クレジット明細・高速道路明細・燃料明細など対応';
-  document.getElementById('analyzeBtn').textContent = isEn ? 'Analyze PDF & create journal entries' : 'PDFを解析して仕訳を作成';
+function addDivider(n) {
+  const chat = document.getElementById('chat');
+  const div = document.createElement('div');
+  div.className = 'turn-divider';
+  div.innerHTML = `<span>${texts[currentLang].turnLabel(n)}</span>`;
+  chat.appendChild(div);
+}
 
-  /* 仕訳一覧 */
-  document.getElementById('resultTitle').textContent = isEn ? 'Journal Entries' : '生成された仕訳';
-  document.getElementById('copyBtn').textContent = isEn ? 'Copy (Tab-separated)' : 'コピー（タブ区切り）';
-  const isPaid = getCurrentPlan() !== 'free';
-  const csvBtn = document.getElementById('csvBtn');
-  const sheetBtn = document.getElementById('sheetBtn');
-  if(isPaid) {
-    csvBtn.className = 'btn-outline';
-    csvBtn.innerHTML = isEn ? 'Export CSV' : 'CSV出力';
-    sheetBtn.className = 'btn-outline';
-    sheetBtn.innerHTML = isEn ? '📊 Open in Sheets' : '📊 スプレッドシートで開く';
-  } else {
-    csvBtn.className = 'btn-outline btn-premium';
-    csvBtn.innerHTML = isEn ? '🔒 Export CSV (Premium)' : '🔒 CSV出力（有料）';
-    sheetBtn.className = 'btn-outline btn-premium';
-    sheetBtn.innerHTML = isEn ? '🔒 Spreadsheet Sync (Premium)' : '🔒 スプレッドシート連携（有料）';
+function addMessage(role, content) {
+  const chat = document.getElementById('chat');
+  const div = document.createElement('div');
+  div.className = `message ${role}`;
+  const avatar = document.createElement('div');
+  avatar.className = `avatar ${role}`;
+  avatar.textContent = role === 'ai' ? '⚖️' : '👤';
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  if (role === 'ai') bubble.innerHTML = content;
+  else bubble.textContent = content;
+  div.appendChild(avatar);
+  div.appendChild(bubble);
+  chat.appendChild(div);
+  div.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+function addActionButtons(actions) {
+  const chat = document.getElementById('chat');
+  const wrap = document.createElement('div');
+  wrap.className = 'next-actions';
+  actions.forEach(action => {
+    const btn = document.createElement('button');
+    btn.className = 'action-btn';
+    btn.textContent = action;
+    btn.onclick = () => {
+      // ボタンを消す
+      wrap.remove();
+      // その選択肢をユーザーの発言として送信
+      document.getElementById('input').value = action;
+      sendMessage();
+    };
+    wrap.appendChild(btn);
+  });
+  chat.appendChild(wrap);
+  wrap.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+function showTyping() {
+  const chat = document.getElementById('chat');
+  const div = document.createElement('div');
+  div.className = 'message ai';
+  div.id = 'typing-indicator';
+  const avatar = document.createElement('div');
+  avatar.className = 'avatar ai';
+  avatar.textContent = '⚖️';
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble typing';
+  bubble.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+  div.appendChild(avatar);
+  div.appendChild(bubble);
+  chat.appendChild(div);
+  div.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing-indicator');
+  if (t) t.remove();
+}
+
+async function sendMessage() {
+  const input = document.getElementById('input');
+  const text = input.value.trim();
+  if (!text) return;
+
+  // 残ってるアクションボタンを消す
+  document.querySelectorAll('.next-actions').forEach(el => el.remove());
+
+  if (!chatStarted) {
+    chatStarted = true;
+    document.getElementById('hero').style.display = 'none';
+    document.getElementById('examples').style.display = 'none';
+    document.getElementById('back-btn').classList.add('visible');
   }
-  const taxBtn = document.getElementById('taxBtn');
-  if(isPaid) {
-    taxBtn.className = 'btn-outline';
-    taxBtn.innerHTML = isEn ? '👨‍💼 Tax Advisor (Coming Soon)' : '👨‍💼 税理士に相談（準備中）';
-  } else {
-    taxBtn.className = 'btn-outline btn-premium';
-    taxBtn.innerHTML = isEn ? '🔒 Tax Advisor (Premium)' : '🔒 税理士に相談（有料）';
-  }
 
-  /* 設定タブ */
-  /* 履歴タブ */
-  const histTitle = document.getElementById('historyTitle');
-  if(histTitle) histTitle.textContent = isEn ? 'Saved Entries' : '保存済み仕訳';
-  const hthMap = {
-    'hth-date': isEn ? 'Date' : '日付',
-    'hth-debit': isEn ? 'Debit' : '借方科目',
-    'hth-credit': isEn ? 'Credit' : '貸方科目',
-    'hth-amount': isEn ? 'Amount' : '金額',
-    'hth-tax': isEn ? 'Tax' : '税区分',
-    'hth-desc': isEn ? 'Description' : '摘要',
-    'hth-source': isEn ? 'Source' : '出典',
-  };
-  Object.entries(hthMap).forEach(([id,label]) => {
-    const el = document.getElementById(id);
-    if(el) el.textContent = label;
-  });
-  const expBtn = document.getElementById('exportHistoryBtn');
-  const expSheetBtn = document.getElementById('exportHistorySheetBtn');
-  if(isPaid) {
-    if(expBtn) { expBtn.className = 'btn-outline'; expBtn.innerHTML = isEn ? 'Export CSV' : 'CSV出力'; }
-    if(expSheetBtn) { expSheetBtn.className = 'btn-outline'; expSheetBtn.innerHTML = isEn ? '📊 Open in Sheets' : '📊 スプレッドシートで開く'; }
-  } else {
-    if(expBtn) { expBtn.className = 'btn-outline btn-premium'; expBtn.innerHTML = isEn ? '🔒 Export CSV (Premium)' : '🔒 CSV出力（有料）'; }
-    if(expSheetBtn) { expSheetBtn.className = 'btn-outline btn-premium'; expSheetBtn.innerHTML = isEn ? '🔒 Spreadsheet (Premium)' : '🔒 スプレッドシート（有料）'; }
-  }
-  const clrBtn = document.getElementById('clearHistoryBtn');
-  if(clrBtn) clrBtn.textContent = isEn ? '🗑️ Clear history' : '🗑️ 履歴を削除';
-  const tabHistory = document.getElementById('tabHistory');
-  if(tabHistory) tabHistory.textContent = isEn ? '🕐 History' : '🕐 履歴';
-  renderHistory();
-  const bb = document.getElementById('browserBanner');
-  if(bb && bb.style.display !== 'none') {
-    const ua = navigator.userAgent.toLowerCase();
-    const isIOS = /iphone|ipad|ipod/.test(ua);
-    bb.innerHTML = isEn
-      ? `📱 Camera may not work in LINE/SNS browsers.<br>Open in ${isIOS ? 'Safari' : 'Chrome'} for best experience.<br><button class="browser-banner-btn" onclick="openExternalBrowser()" id="browserBannerBtn">Open in ${isIOS ? 'Safari' : 'Chrome'}</button>`
-      : `📱 LINEやSNSアプリ内ブラウザではカメラが使えない場合があります。<br>外部ブラウザ（${isIOS ? 'Safari' : 'Chrome'}）で開くと正しく動作します。<br><button class="browser-banner-btn" onclick="openExternalBrowser()">外部ブラウザで開く</button>`;
-  }
+  turnCount++;
+  addDivider(turnCount);
 
-  document.getElementById('activationSectionTitle').textContent = isEn ? 'PLAN ACTIVATION' : 'プランのアクティベーション';
-  const actTitle = document.getElementById('activationTitle');
-  if(actTitle) actTitle.textContent = isEn ? '🔑 Enter Activation Code' : '🔑 アクティベーションコードを入力';
-  const actDesc = document.getElementById('activationDesc');
-  if(actDesc) actDesc.textContent = isEn ? 'Enter the code sent after purchase.' : '購入後に送付されたコードを入力してください。';
-  const actBtn = document.getElementById('activationBtn');
-  if(actBtn) actBtn.textContent = isEn ? 'Apply' : '適用';
+  conversationHistory.push({ role: 'user', content: text });
+  addMessage('user', text);
+  input.value = '';
+  input.style.height = 'auto';
+  input.placeholder = texts[currentLang].placeholderCont;
 
-  updatePlanUI();
-  document.getElementById('settingsFeedback').innerHTML = isEn ? 'Feedback: <a href="mailto:receipic.jp@gmail.com" style="color:var(--brand);font-weight:600">receipic.jp@gmail.com</a><br><a href="/legal.html" target="_blank" style="font-size:13px;color:var(--text2)">Specified Commercial Transactions Act</a>' : 'フィードバックやご意見はこちらまで：<br><a href="mailto:receipic.jp@gmail.com" style="color:var(--brand);font-weight:600">receipic.jp@gmail.com</a><br><a href="/legal.html" target="_blank" style="font-size:13px;color:var(--text2)">特定商取引法に基づく表記</a>';
-
-  /* 件数表示 */
-  const usageUnit = document.getElementById('usageUnit');
-  if(usageUnit) usageUnit.textContent = isEn ? `/ ${getPlanLimit()} items` : `/ ${getPlanLimit()} 件`;
-
-  /* テーブルヘッダー */
-  const thLabels = {
-    'th-date': isEn ? 'Date' : '日付',
-    'th-debit': isEn ? 'Debit' : '借方科目',
-    'th-credit': isEn ? 'Credit' : '貸方科目',
-    'th-amount': isEn ? 'Amount' : '金額',
-    'th-tax': isEn ? 'Tax' : '税区分',
-    'th-desc': isEn ? 'Description' : '摘要',
-  };
-  Object.entries(thLabels).forEach(([id, label]) => {
-    const el = document.getElementById(id);
-    if(el) el.textContent = label;
-  });
-  const outEl = document.getElementById('th-source');
-  if(outEl) outEl.textContent = isEn ? 'Source' : '出典';
-
-  /* 広告テキスト */
-  const adTitle = isEn ? 'Consult a tax accountant for your expenses?' : '税理士に経費処理を相談しませんか？';
-  const adSub = isEn ? 'Free first consultation · Nationwide · Online available' : '初回相談無料・全国対応・オンライン対応';
-  const adBtn = isEn ? 'Learn more' : '詳しくはこちら';
-  ['Photo','Pdf'].forEach(sfx => {
-    const t = document.getElementById('adTitle'+sfx);
-    const s = document.getElementById('adSub'+sfx);
-    const b = document.getElementById('adBtn'+sfx);
-    if(t) t.textContent = adTitle;
-    if(s) s.textContent = adSub;
-    if(b) b.textContent = adBtn;
-  });
-  if(entries.length) renderEntries(entries);
-}
-
-
-const SCAN_WARN_BYTES = 2 * 1024 * 1024;
-const SCAN_MAX_BYTES  = 4.5 * 1024 * 1024;
-
-let files = [];
-let entries = [];
-let usageCount = parseInt(localStorage.getItem('receipic_usage') || '0');
-
-document.getElementById('usageCount').textContent = usageCount;
-
-
-
-function switchTab(tab, el) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  ['photo','pdf','result','history','settings'].forEach(t => {
-    document.getElementById('tab-'+t).style.display = t === tab ? '' : 'none';
-  });
-  if(tab === 'result') renderEntries(entries);
-  if(tab === 'history') renderHistory();
-}
-
-let photoFiles = [];
-
-function handlePhotoSelect(e) {
-  const files = e.target.files;
-  if(!files || files.length === 0) return;
-  Array.from(files).forEach(f => {
-    photoFiles.push(f);
-  });
-  renderPhotoList();
-  /* 非同期でリセット */
-  setTimeout(() => { try { e.target.value = ''; } catch(_){} }, 500);
-}
-
-function removePhoto(i) { photoFiles.splice(i,1); renderPhotoList(); }
-
-function renderPhotoList() {
-  const list = document.getElementById('photoList');
-  const btn  = document.getElementById('analyzePhotoBtn');
-  list.innerHTML = '';
-  photoFiles.forEach((f, i) => {
-    const kb = Math.round(f.size / 1024);
-    const div = document.createElement('div');
-    div.className = 'file-item';
-    const img = document.createElement('img');
-    img.style.cssText = 'width:36px;height:36px;object-fit:cover;border-radius:4px;flex-shrink:0';
-    try {
-      const url = URL.createObjectURL(f);
-      img.src = url;
-      img.onload = () => URL.revokeObjectURL(url);
-    } catch(_) {}
-    const badge = document.createElement('span');
-    badge.className = 'file-type-badge type-image';
-    badge.textContent = '写真';
-    const name = document.createElement('span');
-    name.className = 'file-name';
-    name.textContent = f.name || '画像';
-    const size = document.createElement('span');
-    size.className = 'file-size';
-    size.textContent = kb + ' KB';
-    const rmBtn = document.createElement('button');
-    rmBtn.className = 'file-remove';
-    rmBtn.textContent = '✕';
-    rmBtn.onclick = () => removePhoto(i);
-    div.append(img, badge, name, size, rmBtn);
-    list.appendChild(div);
-  });
-  btn.disabled = photoFiles.length === 0;
-}
-
-async function startPhotoAnalysis() {
-  if(!photoFiles.length) return;
-
-  if(usageCount >= getPlanLimit()) { openUpgrade(); return; }
-
-  document.getElementById('analyzePhotoBtn').disabled = true;
-  const statusBox = document.getElementById('photoStatusBox');
+  showTyping();
 
   try {
-    const all = [];
-    for(let i = 0; i < photoFiles.length; i++) {
-      const f = photoFiles[i];
-      statusBox.style.display = '';
-      statusBox.className = 'status-box status-loading';
-      statusBox.innerHTML = `<span class="spinner"></span>(${i+1}/${photoFiles.length}) ${currentLang === 'en' ? 'Analyzing ' + f.name + '...' : f.name + ' を解析中...'}`;
-      const result = await analyzeImage(f);
-      all.push(...result);
-      usageCount++;
-      localStorage.setItem('receipic_usage', usageCount);
-      document.getElementById('usageCount').textContent = usageCount;
-    }
-    entries.push(...all);
-    saveToHistory(all);
-    document.getElementById('resultMeta').textContent = currentLang === 'en' ? `${entries.length} entries generated` : `${entries.length}件の仕訳を生成`;
-    statusBox.className = 'status-box status-success';
-    statusBox.innerHTML = `✓ ${all.length}件の仕訳を生成しました。「仕訳一覧」タブで確認できます。`;
-    setTimeout(() => { statusBox.style.display = 'none'; }, 3000);
-  } catch(e) {
-    statusBox.className = 'status-box status-error';
-    statusBox.innerHTML = `<strong>解析エラー：</strong>${e.message}`;
-  } finally {
-    document.getElementById('analyzePhotoBtn').disabled = false;
-  }
-}
-
-function handleDragOver(e) { e.preventDefault(); document.getElementById('dropZone').classList.add('drag'); }
-function handleDragLeave()  { document.getElementById('dropZone').classList.remove('drag'); }
-function handleDrop(e) {
-  e.preventDefault();
-  document.getElementById('dropZone').classList.remove('drag');
-  addFiles(Array.from(e.dataTransfer.files).filter(f => f.type === 'application/pdf' || f.type.startsWith('image/')));
-}
-function handleFileSelect(e) { addFiles(Array.from(e.target.files)); e.target.value = ''; }
-
-function detectType(file) {
-  if(file.type.startsWith('image/')) return 'image';
-  const n = file.name.toLowerCase();
-  if(n.includes('クレジット') || n.includes('credit') || n.includes('card')) return 'text';
-  if(file.size > SCAN_WARN_BYTES) return 'scan';
-  if(n.includes('高速') || n.includes('nexco') || n.includes('eneos') || n.includes('ウインク')) return 'scan';
-  return 'unknown';
-}
-
-function addFiles(newFiles) {
-  newFiles.forEach(f => {
-    if(!files.find(x => x.name === f.name && x.size === f.size))
-      files.push({ file: f, type: detectType(f) });
-  });
-  renderFileList();
-}
-function removeFile(i) { files.splice(i,1); renderFileList(); }
-
-function renderFileList() {
-  const list = document.getElementById('fileList');
-  const btn  = document.getElementById('analyzeBtn');
-  const warn = document.getElementById('sizeWarning');
-  let hasBig = false;
-  list.innerHTML = files.map((f,i) => {
-    const kb = Math.round(f.file.size / 1024);
-    const badge = f.type === 'text'  ? '<span class="file-type-badge type-text">テキスト</span>'
-                : f.type === 'scan'  ? '<span class="file-type-badge type-scan">スキャン</span>'
-                : f.type === 'image' ? '<span class="file-type-badge type-image">写真</span>'
-                : '<span class="file-type-badge type-unknown">自動判定</span>';
-    if(f.file.size > SCAN_WARN_BYTES && f.type === 'scan') hasBig = true;
-    return `<div class="file-item">${badge}<span class="file-name">${f.file.name}</span><span class="file-size">${kb} KB</span><button class="file-remove" onclick="removeFile(${i})">✕</button></div>`;
-  }).join('');
-  btn.disabled = files.length === 0;
-  warn.style.display = hasBig ? 'flex' : 'none';
-}
-
-function setStatus(type, html) {
-  const box = document.getElementById('statusBox');
-  box.style.display = '';
-  box.className = 'status-box status-' + type;
-  box.innerHTML = html;
-}
-function clearStatus() { document.getElementById('statusBox').style.display = 'none'; }
-
-async function toBase64(file) {
-  return new Promise((res, rej) => {
-    const r = new FileReader();
-    r.onload  = () => res(r.result.split(',')[1]);
-    r.onerror = () => rej(new Error('ファイル読み込み失敗'));
-    r.readAsDataURL(file);
-  });
-}
-
-async function startAnalysis() {
-  if(!files.length) return;
-
-  if(usageCount >= getPlanLimit()) { openUpgrade(); return; }
-
-  document.getElementById('analyzeBtn').disabled = true;
-  document.getElementById('resultSection').style.display = 'none';
-  entries = [];
-
-  try {
-    const all = [];
-    for(let i = 0; i < files.length; i++) {
-      const {file, type} = files[i];
-      setStatus('loading', `<span class="spinner"></span>(${i+1}/${files.length}) ${file.name} を解析中...`);
-      const result = type === 'image' ? await analyzeImage(file) : type === 'scan' ? await analyzeScan(file) : await analyzeText(file);
-      all.push(...result);
-      usageCount++;
-      localStorage.setItem('receipic_usage', usageCount);
-      document.getElementById('usageCount').textContent = usageCount;
-    }
-    entries = all;
-    saveToHistory(all);
-    renderEntries(entries);
-    document.getElementById('resultMeta').textContent = currentLang === 'en' ? `${entries.length} entries generated` : `${entries.length}件の仕訳を生成`;
-    document.getElementById('resultSection').style.display = '';
-    setStatus('success', `✓ ${entries.length}件の仕訳を生成しました`);
-    setTimeout(clearStatus, 3000);
-  } catch(e) {
-    setStatus('error', `<strong>解析エラー：</strong>${e.message}<div class="error-detail">APIキーを確認するか、ファイルを見直してください。</div>`);
-  } finally {
-    document.getElementById('analyzeBtn').disabled = false;
-  }
-}
-
-function getPromptText() {
-  if(currentLang === 'en') return `Extract journal entry data from this PDF (credit card statement, invoice).
-Return ONLY a JSON array. No preamble, no markdown.
-
-Each element:
-{"date":"YYYY-MM-DD","debit":"Account","credit":"Account","amount":number,"taxCode":"10%|8%|Non-taxable|Exempt","description":"Description","source":"filename"}
-
-Rules:
-- Entertainment/dining → Entertainment Expense, 10% tax
-- Supplies/consumables → Office Supplies, 10% tax
-- Highway toll (NEXCO) → Travel Expense, 10% tax
-- Fuel (gas/diesel) → Fuel Expense, 10% tax
-- Credit card payment → credit is "Accounts Payable"
-- If year is missing, infer from PDF context
-
-JSON array only:`;
-  return `以下のPDF（クレジット明細・請求書）から仕訳データを抽出してください。
-JSON配列のみ返してください。前置き・説明・マークダウン記法（バッククォートなど）は不要です。
-
-各要素の形式:
-{"date":"YYYY-MM-DD","debit":"借方科目","credit":"貸方科目","amount":数値,"taxCode":"課税10%|課税8%|不課税|対象外","description":"摘要","source":"ファイル名"}
-
-ルール:
-- 接待交際費・飲食費 → 課税10%
-- 消耗品費 → 課税10%
-- 高速道路通行料 → 旅費交通費・課税10%
-- 燃料費（軽油・ガソリン） → 燃料費・課税10%
-- クレジット払い → 貸方は「未払金」
-- 日付の年が省略されている場合はPDF記載の年月から補完
-
-JSON配列のみ出力:`;
-}
-function getPromptScan() {
-  if(currentLang === 'en') return `This scanned image/photo is a receipt, invoice, or statement.
-Read all transactions and return ONLY a JSON array. No markdown.
-
-Each element:
-{"date":"YYYY-MM-DD","debit":"Account","credit":"Account","amount":number,"taxCode":"10%|8%|Non-taxable|Exempt","description":"Store name and content","source":"filename"}
-
-Rules:
-- Restaurant/cafe/dining → Entertainment Expense, 10% tax, credit "Accounts Payable"
-- Convenience store purchases → Entertainment Expense, 10% tax
-- Supplies/equipment → Office Supplies, 10% tax
-- NEXCO/highway toll → Travel Expense, 10% tax, credit "Accounts Payable"
-- Gas/fuel (ENEOS etc.) → Fuel Expense, 10% tax, credit "Accounts Payable"
-- One line per transaction (do not split by item)
-- Use total amount (tax included) for each receipt
-- Credit card payment → "Accounts Payable", cash → "Cash"
-
-JSON array only:`;
-  return `このスキャン画像・写真は領収書・請求書・明細書です。
-すべての取引を読み取り、JSON配列のみ返してください。マークダウン記法不要。
-
-各要素:
-{"date":"YYYY-MM-DD","debit":"借方科目","credit":"貸方科目","amount":数値,"taxCode":"課税10%|課税8%|不課税|対象外","description":"摘要（店名と内容）","source":"ファイル名"}
-
-科目のルール:
-- レストラン・カフェ・飲食店（カレー・ラーメン・寿司など）→ 接待交際費・課税10%
-- コンビニ・スーパーでの飲食 → 接待交際費・課税10%
-- 消耗品・備品購入 → 消耗品費・課税10%
-- NEXCO・高速道路 → 旅費交通費・課税10%
-- ガソリン・軽油（ENEOS等） → 燃料費・課税10%
-- タクシー・電車・バス → 旅費交通費・課税10%
-
-金額のルール:
-- レシートは合計金額（税込）を1行にまとめる（トッピング・明細を別行にしない）
-- 小計・合計・お預り合計のうち最終的な支払合計を使う
-- 貸方は現金払い→「現金」、クレジット払い→「未払金」、不明→「未払金」
-
-その他:
-- 1店舗・1取引は必ず1行にまとめる
-- 摘要は「店名 内容」の形式（例：ココイチ赤羽店 カレー）
-- 年月が不明な場合はレシート記載の日付から補完
-
-JSON配列のみ:`;
-}
-async function analyzeText(file) {
-  const b64 = await toBase64(file);
-  return callApi({
-    messages: [{
-      role: 'user',
-      content: [
-        { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: b64 } },
-        { type: 'text', text: getPromptText() + `\n\nファイル名: ${file.name}` }
-      ]
-    }]
-  }, file.name);
-}
-
-async function analyzeImage(file) {
-  const b64 = await toBase64(file);
-  const mime = file.type || 'image/jpeg';
-  return callApi({
-    messages: [{
-      role: 'user',
-      content: [
-        { type: 'image', source: { type: 'base64', media_type: mime, data: b64 } },
-        { type: 'text', text: getPromptScan() + `\n\nファイル名: ${file.name}` }
-      ]
-    }]
-  }, file.name);
-}
-
-async function analyzeScan(file) {
-  const b64 = await toBase64(file);
-  /* PDFはimage/jpegで送れない → 常にdocumentタイプで統一 */
-  return callApi({
-    messages: [{
-      role: 'user',
-      content: [
-        { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: b64 } },
-        { type: 'text', text: getPromptScan() + `\n\nファイル名: ${file.name}` }
-      ]
-    }]
-  }, file.name);
-}
-
-async function callApi(body, fileName) {
-  const payload = {
-    model: 'claude-sonnet-4-5',
-    max_tokens: 4096,
-    ...body
-  };
-
-  const resp = await fetch('https://tight-bush-a0e1.tk-xx719.workers.dev', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload)
-  });
-
-  if(!resp.ok) {
-    const err = await resp.json().catch(() => ({}));
-    if(resp.status === 401) throw new Error('APIキーが無効です。設定タブで確認してください。');
-    if(resp.status === 413) throw new Error(`${fileName}: ファイルが大きすぎます（上限約4.5MB）`);
-    throw new Error(err.error?.message || `APIエラー (${resp.status})`);
-  }
-
-  const data = await resp.json();
-  const raw  = data.content.map(c => c.text || '').join('');
-  return parseJson(raw, fileName);
-}
-
-function parseJson(raw, fileName) {
-  /* ステップ1: マークダウン除去 */
-  let s = raw.trim().replace(/```json\s*/gi, '').replace(/```/g, '').trim();
-
-  /* ステップ2: 最初の [ ... ] を抽出 */
-  const m = s.match(/\[[\s\S]*\]/);
-  if(!m) {
-    console.warn('JSON配列なし:', s.slice(0, 300));
-    return fallback(fileName);
-  }
-
-  /* ステップ3: パース → 失敗なら軽微修正して再試行 */
-  for(const attempt of [m[0], m[0].replace(/,(\s*[}\]])/g, '$1')]) {
-    try {
-      const arr = JSON.parse(attempt);
-      if(Array.isArray(arr) && arr.length) return arr.map(e => ({ ...e, source: e.source || fileName }));
-    } catch(_) {}
-  }
-
-  console.warn('JSONパース全失敗、フォールバック使用');
-  return fallback(fileName);
-}
-
-function fallback(fileName) {
-  const n = fileName.toLowerCase();
-  if(n.includes('クレジット')) return [
-    {date:'2021-08-01',debit:'接待交際費',credit:'未払金',amount:4180,taxCode:'課税10%',description:'リカーマウンテン岩倉店',source:fileName},
-    {date:'2021-08-06',debit:'接待交際費',credit:'未払金',amount:20086,taxCode:'課税10%',description:'ニクバル ダールフルット',source:fileName},
-    {date:'2021-08-13',debit:'接待交際費',credit:'未払金',amount:24508,taxCode:'課税10%',description:'ニクバル ダールフルット',source:fileName},
-    {date:'2021-08-18',debit:'消耗品費',credit:'未払金',amount:15700,taxCode:'課税10%',description:'ワークマン',source:fileName},
-    {date:'2021-08-24',debit:'消耗品費',credit:'未払金',amount:14377,taxCode:'課税10%',description:'テルミ',source:fileName},
-  ];
-  if(n.includes('高速')) return [
-    {date:'2021-09-15',debit:'旅費交通費',credit:'未払金',amount:3950,taxCode:'課税10%',description:'NEXCO 土佐〜坂出',source:fileName},
-    {date:'2021-09-16',debit:'旅費交通費',credit:'未払金',amount:2660,taxCode:'課税10%',description:'NEXCO 坂出北〜早島',source:fileName},
-    {date:'2021-09-20',debit:'旅費交通費',credit:'未払金',amount:320,taxCode:'課税10%',description:'NEXCO 平塚本線',source:fileName},
-    {date:'2021-09-21',debit:'旅費交通費',credit:'未払金',amount:5630,taxCode:'課税10%',description:'NEXCO 新静岡〜小牧',source:fileName},
-  ];
-  if(n.includes('eneos') || n.includes('ウインク')) return [
-    {date:'2021-09-20',debit:'燃料費',credit:'未払金',amount:10151,taxCode:'課税10%',description:'ENEOSウインク 袋井TS 軽油',source:fileName},
-    {date:'2021-09-21',debit:'燃料費',credit:'未払金',amount:11305,taxCode:'課税10%',description:'ENEOSウインク 太陽鉱油 沼津SASS',source:fileName},
-    {date:'2021-09-09',debit:'燃料費',credit:'未払金',amount:27608,taxCode:'課税10%',description:'ENEOSウインク 福山SA 軽油',source:fileName},
-  ];
-  return [{date:'',debit:'未分類',credit:'未払金',amount:0,taxCode:'不課税',description:'手動入力が必要',source:fileName}];
-}
-
-function renderEntries(list) {
-  const tbody = document.getElementById('entriesBody');
-  const sorted = [...list].sort((a,b) => (a.date||'').localeCompare(b.date||''));
-  if(!sorted.length) { tbody.innerHTML = `<tr><td colspan="7" class="empty-state">${currentLang === 'en' ? 'No data' : 'データなし'}</td></tr>`; return; }
-  tbody.innerHTML = sorted.map((e, i) => {
-    const realIdx = entries.indexOf(e);
-    const amt   = Number(e.amount || 0).toLocaleString('ja-JP');
-    const src   = String(e.source || '').replace(/\.pdf$/i, '').slice(0, 14);
-    const taxCl = (e.taxCode || '').includes('課税') ? 'tax-badge' : 'tax-badge free';
-    return `<tr id="row-${realIdx}">
-      <td>${e.date || ''}</td>
-      <td class="debit">${e.debit || ''}</td>
-      <td class="credit">${e.credit || ''}</td>
-      <td class="amount">¥${amt}</td>
-      <td><span class="${taxCl}">${e.taxCode || ''}</span></td>
-      <td>${e.description || ''}</td>
-      <td>
-        <div class="row-actions">
-          <span class="source-badge">${src}</span>
-          <button class="edit-btn" onclick="startEdit(${realIdx})">編集</button>
-          <button class="del-btn" onclick="deleteEntry(${realIdx})" title="削除">✕</button>
-        </div>
-      </td>
-    </tr>`;
-  }).join('');
-}
-
-function deleteEntry(idx) {
-  if(!confirm('この仕訳を削除しますか？')) return;
-  entries.splice(idx, 1);
-  document.getElementById('resultMeta').textContent = currentLang === 'en' ? `${entries.length} entries generated` : `${entries.length}件の仕訳を生成`;
-  renderEntries(entries);
-  if(!entries.length) document.getElementById('resultSection').style.display = 'none';
-}
-
-function startEdit(idx) {
-  const e = entries[idx];
-  const row = document.getElementById('row-' + idx);
-  row.classList.add('edit-row');
-  row.innerHTML = `
-    <td><input class="edit-input" id="ei-date" value="${e.date||''}"></td>
-    <td><input class="edit-input" id="ei-debit" value="${e.debit||''}"></td>
-    <td><input class="edit-input" id="ei-credit" value="${e.credit||''}"></td>
-    <td><input class="edit-input" id="ei-amount" value="${e.amount||0}" type="number"></td>
-    <td>
-      <select class="edit-input" id="ei-tax">
-        ${['課税10%','課税8%','不課税','対象外'].map(t => `<option${e.taxCode===t?' selected':''}>${t}</option>`).join('')}
-      </select>
-    </td>
-    <td><input class="edit-input" id="ei-desc" value="${e.description||''}"></td>
-    <td>
-      <div class="row-actions">
-        <button class="save-btn" onclick="saveEdit(${idx})">保存</button>
-        <button class="edit-btn" onclick="renderEntries(entries)">取消</button>
-      </div>
-    </td>
-  `;
-}
-
-function saveEdit(idx) {
-  entries[idx] = {
-    ...entries[idx],
-    date:        document.getElementById('ei-date').value,
-    debit:       document.getElementById('ei-debit').value,
-    credit:      document.getElementById('ei-credit').value,
-    amount:      Number(document.getElementById('ei-amount').value),
-    taxCode:     document.getElementById('ei-tax').value,
-    description: document.getElementById('ei-desc').value,
-  };
-  renderEntries(entries);
-}
-
-function handleHistoryCSV() {
-  const plan = getCurrentPlan();
-  if(plan === 'free') { openUpgrade(); return; }
-  const history = loadHistory();
-  if(!history.length) return;
-  const rows = [['日付','借方科目','貸方科目','金額','税区分','摘要','出典'], ...history.map(e => [e.date,e.debit,e.credit,e.amount,e.taxCode,e.description,e.source])];
-  const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
-  const bom = '\uFEFF';
-  const blob = new Blob([bom + csv], {type: 'text/csv;charset=utf-8;'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `receipic_history_${new Date().toISOString().slice(0,10)}.csv`;
-  a.click();
-  URL.revokeObjectURL(url);
-  setStatus('success', '✓ CSVをダウンロードしました');
-  setTimeout(clearStatus, 2000);
-}
-
-function handleHistorySheet() {
-  const plan = getCurrentPlan();
-  const isEn = currentLang === 'en';
-  if(plan === 'free') { openUpgrade(); return; }
-  handleHistoryCSV();
-  setTimeout(() => {
-    const msg = isEn
-      ? 'CSV downloaded!\n\nNext steps:\n1. Go to Google Sheets\n2. Click "File" → "Import"\n3. Upload the downloaded CSV file'
-      : 'CSVをダウンロードしました！\n\n次の手順：\n1. Googleスプレッドシートを開く\n2. 「ファイル」→「インポート」をクリック\n3. ダウンロードしたCSVファイルをアップロード';
-    if(confirm(isEn ? msg + '\n\nOpen Google Sheets now?' : msg + '\n\nGoogleスプレッドシートを開きますか？')) {
-      window.open('https://sheets.new', '_blank');
-    }
-  }, 500);
-}
-
-function handleTaxAdvisor() {
-  const plan = getCurrentPlan();
-  const isEn = currentLang === 'en';
-  if(plan === 'free') {
-    openUpgrade();
-    return;
-  }
-  alert(isEn
-    ? '🚧 Coming soon!\n\nWe are currently looking for partner tax advisors.\nFor inquiries, please contact: receipic.jp@gmail.com'
-    : '🚧 準備中です！\n\n現在、提携税理士を探しています。\nお問い合わせは receipic.jp@gmail.com までご連絡ください。'
-  );
-}
-
-function handleSheetExport() {
-  const plan = getCurrentPlan();
-  if(plan === 'free') {
-    openUpgrade();
-    return;
-  }
-  const isEn = currentLang === 'en';
-  // CSVをダウンロード
-  downloadCSV();
-  // 少し待ってからGoogleスプレッドシートを開く
-  setTimeout(() => {
-    const msg = isEn
-      ? 'CSV downloaded!\n\nNext steps:\n1. Go to Google Sheets\n2. Click "File" → "Import"\n3. Upload the downloaded CSV file'
-      : 'CSVをダウンロードしました！\n\n次の手順：\n1. Googleスプレッドシートを開く\n2. 「ファイル」→「インポート」をクリック\n3. ダウンロードしたCSVファイルをアップロード';
-    if(confirm(isEn ? msg + '\n\nOpen Google Sheets now?' : msg + '\n\nGoogleスプレッドシートを開きますか？')) {
-      window.open('https://sheets.new', '_blank');
-    }
-  }, 500);
-}
-
-function handleCSVDownload() {
-  const plan = getCurrentPlan();
-  if(plan === 'free') {
-    openUpgrade();
-    return;
-  }
-  downloadCSV();
-}
-
-function downloadCSV() {
-  if(!entries.length) return;
-  const rows = [['日付','借方科目','貸方科目','金額','税区分','摘要','出典'], ...entries.map(e => [e.date,e.debit,e.credit,e.amount,e.taxCode,e.description,e.source])];
-  const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
-  const bom = '\uFEFF';
-  const blob = new Blob([bom + csv], {type: 'text/csv;charset=utf-8;'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `receipic_${new Date().toISOString().slice(0,10)}.csv`;
-  a.click();
-  URL.revokeObjectURL(url);
-  setStatus('success', '✓ CSVをダウンロードしました');
-  setTimeout(clearStatus, 2000);
-}
-
-function copyTSV() {
-  if(!entries.length) return;
-  const rows = [['日付','借方科目','貸方科目','金額','税区分','摘要','出典'], ...entries.map(e => [e.date,e.debit,e.credit,e.amount,e.taxCode,e.description,e.source])];
-  navigator.clipboard.writeText(rows.map(r => r.join('\t')).join('\n')).then(() => {
-    setStatus('success', '✓ クリップボードにコピーしました');
-    setTimeout(clearStatus, 2000);
-  });
-}
-
-
-/* 履歴管理 */
-function saveToHistory(newEntries) {
-  const key = 'receipic_history';
-  const existing = JSON.parse(localStorage.getItem(key) || '[]');
-  const merged = [...existing, ...newEntries];
-  localStorage.setItem(key, JSON.stringify(merged));
-}
-
-function loadHistory() {
-  return JSON.parse(localStorage.getItem('receipic_history') || '[]');
-}
-
-function clearHistory() {
-  if(confirm(currentLang === 'en' ? 'Clear all history?' : '履歴をすべて削除しますか？')) {
-    localStorage.removeItem('receipic_history');
-    renderHistory();
-  }
-}
-
-function renderHistory() {
-  const list = loadHistory();
-  const tbody = document.getElementById('historyBody');
-  const meta = document.getElementById('historyMeta');
-  const isEn = currentLang === 'en';
-
-  if(!tbody) return;
-
-  meta.textContent = isEn ? `${list.length} entries saved` : `${list.length}件保存済み`;
-
-  if(!list.length) {
-    tbody.innerHTML = `<tr><td colspan="7" class="empty-state">${isEn ? 'No history yet' : '履歴がありません'}</td></tr>`;
-    return;
-  }
-
-  const sorted = [...list].sort((a,b) => (a.date||'').localeCompare(b.date||''));
-  tbody.innerHTML = sorted.map(e => {
-    const amt = Number(e.amount||0).toLocaleString('ja-JP');
-    const src = String(e.source||'').replace(/\.pdf$/i,'').slice(0,12);
-    const taxCl = (e.taxCode||'').includes('課税') ? 'tax-badge' : 'tax-badge free';
-    return `<tr>
-      <td>${e.date||''}</td>
-      <td class="debit">${e.debit||''}</td>
-      <td class="credit">${e.credit||''}</td>
-      <td class="amount">¥${amt}</td>
-      <td><span class="${taxCl}">${e.taxCode||''}</span></td>
-      <td>${e.description||''}</td>
-      <td><span class="source-badge">${src}</span></td>
-    </tr>`;
-  }).join('');
-}
-
-
-
-/* プラン管理 */
-const PLANS = {
-  free:     { limit: 10,  name: 'Free',     nameJa: '無料' },
-  standard: { limit: 80,  name: 'Standard', nameJa: 'スタンダード' },
-  pro:      { limit: 200, name: 'PRO',      nameJa: 'PRO' },
-};
-
-function getCurrentPlan() {
-  return localStorage.getItem('receipic_plan') || 'free';
-}
-
-function getPlanLimit() {
-  return PLANS[getCurrentPlan()].limit;
-}
-
-function updatePlanUI() {
-  const plan = getCurrentPlan();
-  const isEn = currentLang === 'en';
-  const planName = isEn ? PLANS[plan].name : PLANS[plan].nameJa;
-  const limit = PLANS[plan].limit;
-
-  /* プランバッジ更新 */
-  const badge = document.getElementById('planBadge');
-  if(badge) badge.textContent = isEn ? planName + ' Plan' : planName + 'プラン';
-
-  /* 件数上限更新 */
-  const unit = document.getElementById('usageUnit');
-  if(unit) unit.textContent = isEn ? `/ ${limit} items` : `/ ${limit} 件`;
-
-  /* 広告非表示（有料プラン） */
-  ['adBannerPhoto','adBannerText'].forEach(id => {
-    const el = document.getElementById(id);
-    if(el) el.style.display = plan === 'free' ? '' : 'none';
-  });
-
-  /* アクティベーション状態表示 */
-  const statusEl = document.getElementById('activationStatus');
-  if(statusEl) {
-    if(plan === 'free') {
-      statusEl.className = 'key-status key-none';
-      statusEl.textContent = isEn ? 'Free Plan (10 entries/month)' : '無料プラン（月10件）';
-    } else {
-      statusEl.className = 'key-status key-ok';
-      statusEl.textContent = isEn
-        ? `${PLANS[plan].name} Plan active (${limit} entries/month)`
-        : `${PLANS[plan].nameJa}プラン有効（月${limit}件）`;
-    }
-  }
-}
-
-const STRIPE_LINKS = {
-  standard_monthly: 'https://buy.stripe.com/4gM4gA5Md14PaIA5mG1Jm00',
-  standard_yearly:  'https://buy.stripe.com/14A4gAgqRfZJ6skbL41Jm03',
-  pro_monthly:      'https://buy.stripe.com/cNi3cw2A19BlbME9CW1Jm01',
-  pro_yearly:       'https://buy.stripe.com/5kQ3cwdeF7td7wocP81Jm02',
-};
-
-function openUpgrade() {
-  document.getElementById('upgradeModal').classList.add('open');
-}
-function closeUpgrade() { document.getElementById('upgradeModal').classList.remove('open'); }
-
-let currentBilling = 'monthly';
-
-function setBilling(type) {
-  currentBilling = type;
-  const isEn = currentLang === 'en';
-  const isYearly = type === 'yearly';
-
-  document.getElementById('billingMonthly').style.background = !isYearly ? 'var(--bg)' : 'transparent';
-  document.getElementById('billingMonthly').style.color = !isYearly ? 'var(--text)' : 'var(--text2)';
-  document.getElementById('billingYearly').style.background = isYearly ? 'var(--bg)' : 'transparent';
-  document.getElementById('billingYearly').style.color = isYearly ? 'var(--text)' : 'var(--text2)';
-
-  if(isYearly) {
-    document.getElementById('planStandardPrice').innerHTML = isEn ? '¥12,800<span>/yr</span>' : '¥12,800<span>/年</span>';
-    document.getElementById('planProPrice').innerHTML = isEn ? '¥29,800<span>/yr</span>' : '¥29,800<span>/年</span>';
-  } else {
-    document.getElementById('planStandardPrice').innerHTML = isEn ? '¥1,280<span>/mo</span>' : '¥1,280<span>/月</span>';
-    document.getElementById('planProPrice').innerHTML = isEn ? '¥2,980<span>/mo</span>' : '¥2,980<span>/月</span>';
-  }
-}
-
-function goStripe(plan) {
-  const isYearly = currentBilling === 'yearly';
-  const key = plan + '_' + currentBilling;
-  window.open(STRIPE_LINKS[key], '_blank');
-}
-document.getElementById('upgradeModal').addEventListener('click', e => { if(e.target.id === 'upgradeModal') closeUpgrade(); });
-document.getElementById('cameraInput').addEventListener('change', handlePhotoSelect);
-document.getElementById('photoInput').addEventListener('change', handlePhotoSelect);
-applyLang();
-
-/* アプリ内ブラウザ検出 */
-function detectInAppBrowser() {
-  const ua = navigator.userAgent.toLowerCase();
-  const isInApp = ua.includes('line') || ua.includes('instagram') || ua.includes('fbav') || ua.includes('twitter');
-  if(isInApp) {
-    const banner = document.getElementById('browserBanner');
-    if(banner) banner.style.display = 'block';
-    const isIOS = /iphone|ipad|ipod/.test(ua);
-    const btn = document.getElementById('browserBannerBtn');
-    if(btn) btn.textContent = isIOS ? 'Safariで開く' : 'Chromeで開く';
-  }
-}
-
-function openExternalBrowser() {
-  const url = location.href;
-  const ua = navigator.userAgent.toLowerCase();
-  const isIOS = /iphone|ipad|ipod/.test(ua);
-  if(isIOS) {
-    location.href = url.replace('https://', 'googlechrome://');
-    setTimeout(() => { location.href = url; }, 500);
-  } else {
-    location.href = 'intent://' + url.replace(/^https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end';
-  }
-}
-
-async function handleActivation() {
-  const code = document.getElementById('activationInput').value.trim().toUpperCase();
-  const isEn = currentLang === 'en';
-  const btn = document.getElementById('activationBtn');
-  btn.disabled = true;
-  btn.textContent = isEn ? 'Verifying...' : '確認中...';
-
-  try {
-    const resp = await fetch('https://tight-bush-a0e1.tk-xx719.workers.dev/verify', {
+    const t = texts[currentLang];
+    const response = await fetch('https://lawbuddy.tk-xx719.workers.dev/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code })
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-5',
+        max_tokens: 1200,
+        system: t.system,
+        messages: conversationHistory
+      })
     });
-    const data = await resp.json();
-    if(data.valid) {
-      const plan = data.plan === 'PRO' ? 'pro' : 'standard';
-      localStorage.setItem('receipic_plan', plan);
-      localStorage.setItem('receipic_code', code);
-      document.getElementById('activationInput').value = '';
-      updatePlanUI();
-      alert(isEn ? '✓ Plan activated successfully!' : '✓ プランを有効化しました！');
-    } else {
-      alert(isEn ? 'Invalid code. Please check and try again.' : 'コードが無効です。確認してもう一度お試しください。');
+
+    const data = await response.json();
+    removeTyping();
+
+    const rawText = data.content?.[0]?.text || '';
+
+    let reply = '';
+    let actions = [];
+
+    try {
+      // JSON解析を試みる
+      const cleaned = rawText.replace(/```json|```/g, '').trim();
+      const parsed = JSON.parse(cleaned);
+      reply = parsed.reply || rawText;
+      actions = parsed.actions || [];
+    } catch {
+      // JSON失敗時はそのまま表示
+      reply = rawText || (currentLang === 'ja' ? '申し訳ありません、エラーが発生しました。' : 'Sorry, something went wrong.');
     }
-  } catch(e) {
-    alert(isEn ? 'Connection error. Please try again.' : '接続エラーが発生しました。もう一度お試しください。');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = isEn ? 'Apply' : '適用';
+
+    conversationHistory.push({ role: 'assistant', content: reply });
+    addMessage('ai', formatReply(reply));
+
+    if (actions.length > 0) {
+      addActionButtons(actions);
+    }
+
+  } catch (e) {
+    removeTyping();
+    conversationHistory.pop();
+    turnCount--;
+    addMessage('ai', currentLang === 'ja'
+      ? 'ごめんなさい、エラーが発生しました。もう一度試してみてください。'
+      : 'Sorry, something went wrong. Please try again.');
   }
 }
-
-detectInAppBrowser();
-updatePlanUI();
-
 </script>
 </body>
 </html>
