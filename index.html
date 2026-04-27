@@ -80,11 +80,7 @@
 
   .logo:hover .logo-icon { transform: rotate(0deg); }
 
-  .logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-  }
+  .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
 
   .logo-ja {
     font-family: 'Yomogi', cursive;
@@ -102,13 +98,8 @@
     text-transform: uppercase;
   }
 
-  .header-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  .header-right { display: flex; align-items: center; gap: 10px; }
 
-  /* トップに戻るボタン */
   .back-btn {
     display: none;
     align-items: center;
@@ -125,12 +116,7 @@
     transition: all 0.2s;
   }
 
-  .back-btn:hover {
-    background: var(--peach);
-    border-color: var(--orange);
-    transform: translateY(-1px);
-  }
-
+  .back-btn:hover { background: var(--peach); border-color: var(--orange); transform: translateY(-1px); }
   .back-btn.visible { display: flex; }
 
   .lang-toggle {
@@ -188,12 +174,7 @@
   }
 
   .hero h1 span { color: var(--orange); }
-
-  .hero p {
-    font-size: 13px;
-    color: var(--ink-light);
-    line-height: 1.7;
-  }
+  .hero p { font-size: 13px; color: var(--ink-light); line-height: 1.7; }
 
   .examples {
     display: flex;
@@ -254,11 +235,7 @@
     flex-shrink: 0;
   }
 
-  .avatar.ai {
-    background: linear-gradient(135deg, var(--sun), var(--orange));
-    box-shadow: 0 3px 10px var(--shadow);
-  }
-
+  .avatar.ai { background: linear-gradient(135deg, var(--sun), var(--orange)); box-shadow: 0 3px 10px var(--shadow); }
   .avatar.user { background: var(--ink); }
 
   .bubble {
@@ -270,29 +247,11 @@
     box-shadow: 0 2px 8px var(--shadow);
   }
 
-  .message.ai .bubble {
-    background: var(--white);
-    border-radius: 4px 18px 18px 18px;
-    color: var(--ink);
-  }
+  .message.ai .bubble { background: var(--white); border-radius: 4px 18px 18px 18px; color: var(--ink); }
+  .message.user .bubble { background: linear-gradient(135deg, var(--orange), #FF4500); border-radius: 18px 4px 18px 18px; color: white; }
 
-  .message.user .bubble {
-    background: linear-gradient(135deg, var(--orange), #FF4500);
-    border-radius: 18px 4px 18px 18px;
-    color: white;
-  }
-
-  .bubble h3 {
-    font-size: 14px;
-    font-weight: 700;
-    margin: 10px 0 4px;
-    color: var(--ink);
-  }
-
-  .bubble li {
-    margin-left: 16px;
-    margin-bottom: 2px;
-  }
+  .bubble h3 { font-size: 14px; font-weight: 700; margin: 10px 0 4px; color: var(--ink); }
+  .bubble li { margin-left: 16px; margin-bottom: 2px; }
 
   .law-tag {
     display: inline-block;
@@ -304,6 +263,29 @@
     font-weight: 700;
     color: var(--orange);
     margin-bottom: 8px;
+  }
+
+  /* 会話の区切り線 */
+  .turn-divider {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0;
+  }
+
+  .turn-divider span {
+    font-size: 10px;
+    color: var(--ink-light);
+    opacity: 0.4;
+    white-space: nowrap;
+  }
+
+  .turn-divider::before,
+  .turn-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(107,79,42,0.1);
   }
 
   .typing {
@@ -348,9 +330,7 @@
     transition: box-shadow 0.2s;
   }
 
-  .input-box:focus-within {
-    box-shadow: 0 4px 24px rgba(255,107,53,0.2), 0 0 0 2px rgba(255,107,53,0.3);
-  }
+  .input-box:focus-within { box-shadow: 0 4px 24px rgba(255,107,53,0.2), 0 0 0 2px rgba(255,107,53,0.3); }
 
   textarea {
     flex: 1;
@@ -386,13 +366,7 @@
   .send-btn:active { transform: scale(0.97); }
   .send-btn svg { width: 18px; height: 18px; fill: white; }
 
-  .disclaimer {
-    text-align: center;
-    font-size: 10px;
-    color: var(--ink-light);
-    opacity: 0.6;
-    margin-top: 10px;
-  }
+  .disclaimer { text-align: center; font-size: 10px; color: var(--ink-light); opacity: 0.6; margin-top: 10px; }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
@@ -458,20 +432,25 @@
 <script>
 let currentLang = 'ja';
 let chatStarted = false;
+let conversationHistory = [];
+let turnCount = 0;
 
 const texts = {
   ja: {
     logoText: 'ほうりつ相談室',
     heroTitle: 'なんでも<span>気軽に</span>聞いてみて！',
     heroSub: '法律のことって難しそう…でも大丈夫。<br>あなたの言葉で話しかけてね。',
-    placeholder: '困ってることを話しかけてね...',
+    placeholderFirst: '困ってることを話しかけてね...',
+    placeholderCont: 'さらに詳しく聞いてみて...',
     disclaimer: '⚠️ このサービスは法的アドバイスではありません。参考情報としてご活用ください。',
     backLabel: 'トップに戻る',
     chips: ['残業代が払われない 😤','隣の木が敷地に入ってきた 🌳','敷金が返ってこない 🏠','ネット上で悪口を書かれた 😢','解雇されそう 💼'],
+    turnLabel: (n) => `${n}回目の相談`,
     system: `あなたは日本の法律をわかりやすく説明するアシスタントです。
 ユーザーが日常の困りごとを話しかけてきたら、関係する日本の法律をわかりやすく、親しみやすい言葉で説明してください。
+会話の文脈を必ず踏まえて回答してください。前の質問や回答を参照しながら、続きの会話として自然に答えてください。
 回答フォーマット：
-1. まず共感の一言
+1. まず共感の一言（2回目以降は前の会話を踏まえて自然につなげる）
 2. 関連する法律の名前（例：民法233条）
 3. その法律が何を言っているか、中学生でもわかるように説明
 4. ユーザーが取れる具体的なアクション
@@ -482,14 +461,17 @@ const texts = {
     logoText: 'Law Buddy',
     heroTitle: 'Ask me <span>anything</span>!',
     heroSub: "Law sounds scary... but don't worry!<br>Just talk to me like a friend.",
-    placeholder: 'Tell me what\'s bothering you...',
+    placeholderFirst: "Tell me what's bothering you...",
+    placeholderCont: 'Ask a follow-up question...',
     disclaimer: '⚠️ This is not legal advice. For reference only.',
     backLabel: 'Back to Top',
-    chips: ['My boss won\'t pay overtime 😤','Neighbor\'s tree in my yard 🌳','Landlord kept my deposit 🏠','Being harassed online 😢','Facing unfair dismissal 💼'],
+    chips: ["My boss won't pay overtime 😤","Neighbor's tree in my yard 🌳","Landlord kept my deposit 🏠","Being harassed online 😢","Facing unfair dismissal 💼"],
+    turnLabel: (n) => `Question ${n}`,
     system: `You are a friendly assistant that explains Japanese law in simple, easy-to-understand English.
 When a user describes an everyday problem, explain the relevant Japanese laws in plain language anyone can understand.
+Always consider the full conversation context and refer back to previous messages naturally.
 Format:
-1. Start with empathy
+1. Start with empathy (reference previous context from 2nd message onward)
 2. Name the relevant law (e.g., Civil Code Article 233)
 3. Explain what it means in simple terms
 4. List concrete actions the user can take
@@ -499,14 +481,16 @@ Use emojis naturally. Keep it friendly and never use legal jargon without explai
 };
 
 function goTop() {
-  // チャットをクリアしてトップに戻る
   document.getElementById('chat').innerHTML = '';
   document.getElementById('hero').style.display = '';
   document.getElementById('examples').style.display = '';
   document.getElementById('back-btn').classList.remove('visible');
   document.getElementById('input').value = '';
   document.getElementById('input').style.height = 'auto';
+  document.getElementById('input').placeholder = texts[currentLang].placeholderFirst;
   chatStarted = false;
+  conversationHistory = [];
+  turnCount = 0;
 }
 
 function setLang(lang) {
@@ -516,16 +500,12 @@ function setLang(lang) {
   document.getElementById('logo-ja').textContent = t.logoText;
   document.getElementById('hero-title').innerHTML = t.heroTitle;
   document.getElementById('hero-sub').innerHTML = t.heroSub;
-  document.getElementById('input').placeholder = t.placeholder;
+  document.getElementById('input').placeholder = chatStarted ? t.placeholderCont : t.placeholderFirst;
   document.getElementById('disclaimer').textContent = t.disclaimer;
   document.getElementById('back-label').textContent = t.backLabel;
   const chips = document.getElementById('examples').querySelectorAll('.chip');
   chips.forEach((c, i) => c.textContent = t.chips[i]);
-
-  // チャット中に言語切替したらリセット
-  if (chatStarted) {
-    goTop();
-  }
+  if (chatStarted) goTop();
 }
 
 function useExample(el) {
@@ -544,6 +524,25 @@ function handleKey(e) {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
 }
 
+function formatReply(reply) {
+  return reply
+    .replace(/^## (.*?)$/gm, '<h3>$1</h3>')
+    .replace(/^### (.*?)$/gm, '<strong>$1</strong>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/【(.*?)】/g, '<div class="law-tag">📜 $1</div>')
+    .replace(/^- (.*?)$/gm, '<li>$1</li>')
+    .replace(/\n\n/g, '<br><br>')
+    .replace(/\n/g, '<br>');
+}
+
+function addDivider(n) {
+  const chat = document.getElementById('chat');
+  const div = document.createElement('div');
+  div.className = 'turn-divider';
+  div.innerHTML = `<span>${texts[currentLang].turnLabel(n)}</span>`;
+  chat.appendChild(div);
+}
+
 function addMessage(role, content) {
   const chat = document.getElementById('chat');
   const div = document.createElement('div');
@@ -555,18 +554,13 @@ function addMessage(role, content) {
 
   const bubble = document.createElement('div');
   bubble.className = 'bubble';
-
-  if (role === 'ai') {
-    bubble.innerHTML = content;
-  } else {
-    bubble.textContent = content;
-  }
+  if (role === 'ai') bubble.innerHTML = content;
+  else bubble.textContent = content;
 
   div.appendChild(avatar);
   div.appendChild(bubble);
   chat.appendChild(div);
   div.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  return bubble;
 }
 
 function showTyping() {
@@ -574,15 +568,12 @@ function showTyping() {
   const div = document.createElement('div');
   div.className = 'message ai';
   div.id = 'typing-indicator';
-
   const avatar = document.createElement('div');
   avatar.className = 'avatar ai';
   avatar.textContent = '⚖️';
-
   const bubble = document.createElement('div');
   bubble.className = 'bubble typing';
   bubble.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
-
   div.appendChild(avatar);
   div.appendChild(bubble);
   chat.appendChild(div);
@@ -606,9 +597,14 @@ async function sendMessage() {
     document.getElementById('back-btn').classList.add('visible');
   }
 
+  turnCount++;
+  addDivider(turnCount);
+
+  conversationHistory.push({ role: 'user', content: text });
   addMessage('user', text);
   input.value = '';
   input.style.height = 'auto';
+  input.placeholder = texts[currentLang].placeholderCont;
 
   showTyping();
 
@@ -621,26 +617,20 @@ async function sendMessage() {
         model: 'claude-sonnet-4-5',
         max_tokens: 1000,
         system: t.system,
-        messages: [{ role: 'user', content: text }]
+        messages: conversationHistory
       })
     });
 
     const data = await response.json();
     removeTyping();
 
-    const reply = data.content?.[0]?.text || '申し訳ありません、エラーが発生しました。';
-    const formatted = reply
-      .replace(/^## (.*?)$/gm, '<h3>$1</h3>')
-      .replace(/^### (.*?)$/gm, '<strong>$1</strong>')
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/【(.*?)】/g, '<div class="law-tag">📜 $1</div>')
-      .replace(/^- (.*?)$/gm, '<li>$1</li>')
-      .replace(/\n\n/g, '<br><br>')
-      .replace(/\n/g, '<br>');
-
-    addMessage('ai', formatted);
+    const reply = data.content?.[0]?.text || (currentLang === 'ja' ? '申し訳ありません、エラーが発生しました。' : 'Sorry, something went wrong.');
+    conversationHistory.push({ role: 'assistant', content: reply });
+    addMessage('ai', formatReply(reply));
   } catch (e) {
     removeTyping();
+    conversationHistory.pop();
+    turnCount--;
     addMessage('ai', currentLang === 'ja'
       ? 'ごめんなさい、エラーが発生しました。もう一度試してみてください。'
       : 'Sorry, something went wrong. Please try again.');
