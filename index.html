@@ -579,11 +579,16 @@ async function sendMessage() {
     const data = await response.json();
     removeTyping();
 
-    const reply = data.error?.message || data.content?.[0]?.text || '申し訳ありません、エラーが発生しました。';
-    const formatted = reply
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/【(.*?)】/g, '<div class="law-tag">📜 $1</div>')
-      .replace(/\n/g, '<br>');
+    const reply = data.content?.[0]?.text || '申し訳ありません、エラーが発生しました。';
+const formatted = reply
+  .replace(/^## (.*?)$/gm, '<h3>$1</h3>')
+  .replace(/^### (.*?)$/gm, '<strong>$1</strong>')
+  .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+  .replace(/【(.*?)】/g, '<div class="law-tag">📜 $1</div>')
+  .replace(/^- (.*?)$/gm, '<li>$1</li>')
+  .replace(/(<li>.*?<\/li>)/gs, '$1')
+  .replace(/\n\n/g, '<br><br>')
+  .replace(/\n/g, '<br>');
 
     addMessage('ai', formatted);
   } catch (e) {
