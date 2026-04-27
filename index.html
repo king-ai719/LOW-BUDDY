@@ -565,7 +565,7 @@ async function sendMessage() {
 
   try {
     const t = texts[currentLang];
-    const response = await fetch('https://lawbuddy.tk-xx719.workers.dev', {
+    const response = await fetch('https://lawbuddy.tk-xx719.workers.dev/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
